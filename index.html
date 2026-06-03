@@ -685,7 +685,6 @@
           <span class="option-hint">home spray, álcool perfumado</span>
         </button>
       </div>
-      <button class="cta-btn" id="cta-main" disabled onclick="showResult()">Ver recomendações →</button>
     </div>
   </div>
 
@@ -1109,7 +1108,7 @@ function selectOption(el, val) {
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
   selected = val;
-  document.getElementById('cta-main').disabled = false;
+  showResult();
 }
 
 function showResult() {

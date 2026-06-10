@@ -7,11 +7,11 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
   :root {
-    --corin-orange: #D4600A;
-    --corin-amber: #F5A623;
-    --corin-cream: #FDF8F2;
-    --corin-dark: #1A1208;
-    --corin-mid: #7A5C3A;
+    --corin-orange: #C8386B;
+    --corin-amber: #ffffff;
+    --corin-cream: #f5f5f5;
+    --corin-dark: #111111;
+    --corin-mid: #666666;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--corin-cream); }
@@ -37,7 +37,7 @@
     top: 0;
     z-index: 50;
   }
-  .header-logo { font-family: 'Playfair Display', serif; color: var(--corin-amber); font-size: 20px; letter-spacing: 0.02em; }
+  .header-logo { font-family: 'Playfair Display', serif; color: #C8386B; font-size: 20px; letter-spacing: 0.02em; }
   .header-sub { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.15em; text-transform: uppercase; }
 
   /* ── CART BUTTON ── */
@@ -57,7 +57,7 @@
     gap: 8px;
     transition: background 0.2s, border-color 0.2s;
   }
-  .cart-btn:hover { background: rgba(255,255,255,0.14); border-color: var(--corin-amber); }
+  .cart-btn:hover { background: rgba(255,255,255,0.14); border-color: #C8386B; }
   .cart-icon { font-size: 16px; }
   .cart-badge {
     position: absolute;
@@ -94,7 +94,7 @@
     pointer-events: none;
   }
   .hero-title { font-family: 'Playfair Display', serif; color: #fff; font-size: 26px; line-height: 1.25; margin-bottom: 8px; position: relative; }
-  .hero-title em { color: var(--corin-amber); font-style: normal; }
+  .hero-title em { color: #C8386B; font-style: normal; }
   .hero-desc { color: rgba(255,255,255,0.55); font-size: 13px; position: relative; }
 
   .question-area { padding: 28px 24px 20px; }
@@ -106,7 +106,7 @@
     transition: border-color 0.2s, background 0.2s, transform 0.1s;
   }
   .option-btn:hover { border-color: var(--corin-orange); transform: translateY(-1px); }
-  .option-btn.selected { border-color: var(--corin-orange); background: #FFF5EE; }
+  .option-btn.selected { border-color: var(--corin-orange); background: #fce8f0; }
   .option-icon { font-size: 22px; margin-bottom: 6px; display: block; }
   .option-title { font-size: 13px; font-weight: 500; color: var(--corin-dark); display: block; margin-bottom: 2px; }
   .option-hint { font-size: 11px; color: var(--corin-mid); }
@@ -117,8 +117,8 @@
     font-size: 14px; font-weight: 500; cursor: pointer; letter-spacing: 0.03em;
     transition: background 0.2s, transform 0.1s;
   }
-  .cta-btn:hover { background: #B8520A; transform: translateY(-1px); }
-  .cta-btn:disabled { background: #C9B8A8; cursor: not-allowed; transform: none; }
+  .cta-btn:hover { background: #a82558; transform: translateY(-1px); }
+  .cta-btn:disabled { background: #d4a0b5; cursor: not-allowed; transform: none; }
 
   .back-btn {
     background: none; border: none; color: var(--corin-mid); font-family: 'DM Sans', sans-serif;
@@ -157,12 +157,12 @@
   /* card action buttons */
   .product-actions { display: flex; gap: 6px; align-items: center; }
   .product-link {
-    font-size: 11px; color: var(--corin-orange); background: #FFF5EE;
+    font-size: 11px; color: var(--corin-orange); background: #fce8f0;
     border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer;
     font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.2s;
     white-space: nowrap;
   }
-  .product-link:hover { background: #FFE8D4; }
+  .product-link:hover { background: #f5c0d5; }
   .card-add-btn {
     font-size: 11px; color: #fff; background: var(--corin-orange);
     border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer;
@@ -170,11 +170,11 @@
     transition: background 0.2s, transform 0.1s;
     white-space: nowrap;
   }
-  .card-add-btn:hover { background: #B8520A; transform: scale(1.04); }
+  .card-add-btn:hover { background: #a82558; transform: scale(1.04); }
   .card-add-btn.added { background: #2A9D5C; }
 
   .tip-box {
-    margin: 0 20px 20px; background: #FFF3E8;
+    margin: 0 20px 20px; background: #fce8f0;
     border-left: 3px solid var(--corin-orange);
     border-radius: 0 8px 8px 0; padding: 10px 14px;
   }
@@ -255,7 +255,7 @@
   .spec-section { margin-bottom: 18px; }
   .spec-section-title {
     font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--corin-amber); font-weight: 500; margin-bottom: 8px;
+    color: #C8386B; font-weight: 500; margin-bottom: 8px;
   }
   .spec-section p { font-size: 13px; color: var(--corin-dark); line-height: 1.65; }
 
@@ -272,7 +272,7 @@
   .warn-list li {
     font-size: 13px; color: var(--corin-dark); line-height: 1.55;
     padding: 7px 10px; margin-bottom: 6px;
-    background: #FFF3E8; border-left: 3px solid var(--corin-orange);
+    background: #fce8f0; border-left: 3px solid var(--corin-orange);
     border-radius: 0 6px 6px 0;
   }
   .warn-list li strong { color: var(--corin-dark); font-weight: 500; }
@@ -314,7 +314,7 @@
     transition: background 0.2s, transform 0.1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .modal-add-btn:hover { background: #B8520A; transform: translateY(-1px); }
+  .modal-add-btn:hover { background: #a82558; transform: translateY(-1px); }
   .modal-add-btn.success { background: #2A9D5C; }
   .modal-add-btn.success:hover { background: #238A4F; }
 
@@ -362,7 +362,7 @@
   }
   .cart-drawer-title {
     font-family: 'Playfair Display', serif;
-    color: var(--corin-amber);
+    color: #C8386B;
     font-size: 17px;
     display: flex; align-items: center; gap: 8px;
   }
@@ -442,8 +442,8 @@
     transition: background 0.2s, transform 0.1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .checkout-btn:hover { background: #B8520A; transform: translateY(-1px); }
-  .checkout-btn:disabled { background: #C9B8A8; cursor: not-allowed; transform: none; }
+  .checkout-btn:hover { background: #a82558; transform: translateY(-1px); }
+  .checkout-btn:disabled { background: #d4a0b5; cursor: not-allowed; transform: none; }
   .clear-cart-btn {
     width: 100%; background: none; border: none; color: var(--corin-mid);
     font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer;
@@ -617,6 +617,85 @@
     .toast { bottom: calc(24px + env(safe-area-inset-bottom)); }
   }
 
+
+  /* ── LOGO IMAGE ── */
+  .header-logo-img {
+    height: 38px;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  /* ── STICKY CART BAR ── */
+  .sticky-cart-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: var(--corin-dark);
+    border-top: 2px solid var(--corin-pink);
+    padding: 13px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    transform: translateY(100%);
+    transition: transform 0.38s cubic-bezier(0.32,0.72,0,1);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.22);
+  }
+  .sticky-cart-bar.visible { transform: translateY(0); }
+
+  .sticky-cart-left {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sticky-cart-count {
+    background: var(--corin-pink);
+    color: #fff;
+    font-size: 11px; font-weight: 700;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .sticky-cart-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+  }
+  .sticky-cart-total {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .sticky-cart-btn {
+    background: var(--corin-pink);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.1s;
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+  }
+  .sticky-cart-btn:hover { background: #a82558; transform: scale(1.02); }
+
+  /* push screen content up when bar is visible */
+  #corin-app.bar-visible { padding-bottom: 68px; }
+
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .sticky-cart-bar { padding-bottom: calc(13px + env(safe-area-inset-bottom)); }
+    #corin-app.bar-visible { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  }
+
+  @media (max-width: 374px) {
+    .sticky-cart-bar { padding: 11px 14px; }
+    .sticky-cart-btn { padding: 9px 14px; font-size: 12px; }
+    .sticky-cart-total { font-size: 13px; }
+  }
+
 </style>
 </head>
 <body>
@@ -625,7 +704,7 @@
   <!-- HEADER -->
   <div class="header">
     <div>
-      <div class="header-logo">Corin Corantes</div>
+      <img src="https://acdn-us.mitiendanube.com/stores/002/234/964/themes/common/logo-511941505-1722272848-372ced23c5362bafe998fbe29472aea31722272848-480-0.webp" alt="Corin Corantes" class="header-logo-img">
       <div class="header-sub">Catálogo Interativo</div>
     </div>
     <button class="cart-btn" onclick="openCart()">
@@ -1307,6 +1386,11 @@ function updateCartUI() {
   const count = cart.reduce((s, c) => s + c.qty, 0);
   const badge = document.getElementById('cart-badge');
   const label = document.getElementById('cart-label');
+  const bar = document.getElementById('sticky-cart-bar');
+  const app = document.getElementById('corin-app');
+  const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
+  const subtotal = cart.reduce((s, c) => s + (c.priceNum ? c.priceNum * c.qty : 0), 0);
+  const hasVariable = cart.some(c => c.priceNum === null);
 
   if (count > 0) {
     badge.textContent = count;
@@ -1315,9 +1399,16 @@ function updateCartUI() {
     void badge.offsetWidth;
     badge.classList.add('bump');
     label.textContent = 'Carrinho';
+    // sticky bar
+    document.getElementById('sticky-count').textContent = count;
+    document.getElementById('sticky-total').textContent = fmt(subtotal) + (hasVariable ? ' +' : '');
+    bar.classList.add('visible');
+    app.classList.add('bar-visible');
   } else {
     badge.classList.remove('visible');
     label.textContent = 'Carrinho';
+    bar.classList.remove('visible');
+    app.classList.remove('bar-visible');
   }
 }
 
@@ -1420,5 +1511,18 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 </script>
+
+<!-- STICKY CART BAR -->
+<div class="sticky-cart-bar" id="sticky-cart-bar">
+  <div class="sticky-cart-left">
+    <span class="sticky-cart-count" id="sticky-count">0</span>
+    <span class="sticky-cart-label">iten(s) no carrinho</span>
+  </div>
+  <span class="sticky-cart-total" id="sticky-total">R$ 0,00</span>
+  <button class="sticky-cart-btn" onclick="openCart()">
+    🛒 Ver carrinho
+  </button>
+</div>
+
 </body>
 </html>

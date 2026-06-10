@@ -7,14 +7,15 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
   :root {
-    --corin-orange: #C8386B;
-    --corin-amber: #ffffff;
-    --corin-cream: #f5f5f5;
-    --corin-dark: #111111;
-    --corin-mid: #666666;
+    --corin-orange: #A45748;
+    --corin-amber: #E3B367;
+    --corin-cream: #FFFFFF;
+    --corin-dark: #8D2D1A;
+    --corin-mid: #7A4A3A;
+    --corin-bar: #E3B367;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--corin-cream); }
+  body { background: #f0e8e5; }
 
   #corin-app {
     font-family: 'DM Sans', sans-serif;
@@ -26,6 +27,59 @@
   .screen.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement-bar {
+    background: var(--corin-bar);
+    padding: 9px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+  .ann-text {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--corin-dark);
+    letter-spacing: 0.04em;
+    display: none;
+  }
+  .ann-socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .ann-social-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--corin-dark);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s;
+    opacity: 0.85;
+  }
+  .ann-social-link:hover { opacity: 1; }
+  .ann-social-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ann-social-icon svg { width: 14px; height: 14px; fill: var(--corin-dark); }
+  .ann-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(141,45,26,0.25);
+  }
+
   /* ── HEADER ── */
   .header {
     background: var(--corin-dark);
@@ -34,10 +88,10 @@
     align-items: center;
     justify-content: space-between;
     position: sticky;
-    top: 0;
+    top: 42px;
     z-index: 50;
   }
-  .header-logo { font-family: 'Playfair Display', serif; color: #C8386B; font-size: 20px; letter-spacing: 0.02em; }
+  .header-logo { font-family: 'Playfair Display', serif; color: var(--corin-amber); font-size: 20px; letter-spacing: 0.02em; }
   .header-sub { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.15em; text-transform: uppercase; }
 
   /* ── CART BUTTON ── */
@@ -57,13 +111,13 @@
     gap: 8px;
     transition: background 0.2s, border-color 0.2s;
   }
-  .cart-btn:hover { background: rgba(255,255,255,0.14); border-color: #C8386B; }
+  .cart-btn:hover { background: rgba(255,255,255,0.14); border-color: var(--corin-amber); }
   .cart-icon { font-size: 16px; }
   .cart-badge {
     position: absolute;
     top: -6px; right: -6px;
-    background: var(--corin-orange);
-    color: #fff;
+    background: var(--corin-amber);
+    color: var(--corin-dark);
     font-size: 10px;
     font-weight: 700;
     width: 18px; height: 18px;
@@ -76,7 +130,6 @@
   .cart-badge.visible { display: flex; }
   .cart-badge.bump { animation: bump 0.3s ease; }
   @keyframes bump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.45)} }
-  .cart-total-label { font-size: 12px; color: rgba(255,255,255,0.6); }
 
   /* ── HOME ── */
   .home-hero {
@@ -89,24 +142,24 @@
   .home-hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 60% 0%, rgba(213,96,10,0.3) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(245,166,35,0.15) 0%, transparent 50%);
+    background: radial-gradient(ellipse at 60% 0%, rgba(163,87,72,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(227,179,103,0.18) 0%, transparent 50%);
     pointer-events: none;
   }
   .hero-title { font-family: 'Playfair Display', serif; color: #fff; font-size: 26px; line-height: 1.25; margin-bottom: 8px; position: relative; }
-  .hero-title em { color: #C8386B; font-style: normal; }
+  .hero-title em { color: var(--corin-amber); font-style: normal; }
   .hero-desc { color: rgba(255,255,255,0.55); font-size: 13px; position: relative; }
 
-  .question-area { padding: 28px 24px 20px; }
+  .question-area { padding: 28px 24px 20px; background: #fff; }
   .question-label { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--corin-mid); margin-bottom: 16px; }
   .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .option-btn {
-    background: #fff; border: 1.5px solid #E8DFD3; border-radius: 10px;
+    background: #fff; border: 1.5px solid #EAD9D5; border-radius: 10px;
     padding: 14px 12px; cursor: pointer; text-align: left;
     transition: border-color 0.2s, background 0.2s, transform 0.1s;
   }
-  .option-btn:hover { border-color: var(--corin-orange); transform: translateY(-1px); }
-  .option-btn.selected { border-color: var(--corin-orange); background: #fce8f0; }
+  .option-btn:hover { border-color: var(--corin-orange); transform: translateY(-1px); background: #FDF5F3; }
+  .option-btn.selected { border-color: var(--corin-orange); background: #FDF5F3; }
   .option-icon { font-size: 22px; margin-bottom: 6px; display: block; }
   .option-title { font-size: 13px; font-weight: 500; color: var(--corin-dark); display: block; margin-bottom: 2px; }
   .option-hint { font-size: 11px; color: var(--corin-mid); }
@@ -117,8 +170,8 @@
     font-size: 14px; font-weight: 500; cursor: pointer; letter-spacing: 0.03em;
     transition: background 0.2s, transform 0.1s;
   }
-  .cta-btn:hover { background: #a82558; transform: translateY(-1px); }
-  .cta-btn:disabled { background: #d4a0b5; cursor: not-allowed; transform: none; }
+  .cta-btn:hover { background: #8D3E31; transform: translateY(-1px); }
+  .cta-btn:disabled { background: #C9AFA9; cursor: not-allowed; transform: none; }
 
   .back-btn {
     background: none; border: none; color: var(--corin-mid); font-family: 'DM Sans', sans-serif;
@@ -129,16 +182,16 @@
   /* ── RESULT SCREEN ── */
   .result-nav {
     padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 0.5px solid #E8DFD3; background: #fff;
+    border-bottom: 0.5px solid #EAD9D5; background: #fff;
   }
   .result-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--corin-mid); }
 
-  .products-area { padding: 20px; }
+  .products-area { padding: 20px; background: #fff; }
   .section-title { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--corin-mid); margin-bottom: 14px; }
   .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
   .product-card {
-    background: #fff; border: 1.5px solid #E8DFD3; border-radius: 12px;
+    background: #fff; border: 1.5px solid #EAD9D5; border-radius: 12px;
     padding: 16px 14px; cursor: pointer;
     transition: border-color 0.2s, transform 0.15s;
     display: flex; flex-direction: column; gap: 8px;
@@ -154,15 +207,14 @@
   .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
   .product-price { font-size: 13px; font-weight: 500; color: var(--corin-orange); }
 
-  /* card action buttons */
   .product-actions { display: flex; gap: 6px; align-items: center; }
   .product-link {
-    font-size: 11px; color: var(--corin-orange); background: #fce8f0;
+    font-size: 11px; color: var(--corin-orange); background: #FDF5F3;
     border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer;
     font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.2s;
     white-space: nowrap;
   }
-  .product-link:hover { background: #f5c0d5; }
+  .product-link:hover { background: #F5E0DB; }
   .card-add-btn {
     font-size: 11px; color: #fff; background: var(--corin-orange);
     border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer;
@@ -170,11 +222,11 @@
     transition: background 0.2s, transform 0.1s;
     white-space: nowrap;
   }
-  .card-add-btn:hover { background: #a82558; transform: scale(1.04); }
+  .card-add-btn:hover { background: #8D3E31; transform: scale(1.04); }
   .card-add-btn.added { background: #2A9D5C; }
 
   .tip-box {
-    margin: 0 20px 20px; background: #fce8f0;
+    margin: 0 20px 20px; background: #FDF5F3;
     border-left: 3px solid var(--corin-orange);
     border-radius: 0 8px 8px 0; padding: 10px 14px;
   }
@@ -185,7 +237,7 @@
   .modal-overlay {
     display: none;
     position: fixed; inset: 0;
-    background: rgba(26,18,8,0.55);
+    background: rgba(141,45,26,0.45);
     z-index: 100;
     align-items: flex-end;
     justify-content: center;
@@ -207,7 +259,7 @@
 
   .modal-handle {
     width: 36px; height: 4px;
-    background: #D4C4B0; border-radius: 2px;
+    background: #D4B8B0; border-radius: 2px;
     margin: 12px auto 0;
     flex-shrink: 0;
   }
@@ -215,13 +267,13 @@
   .modal-header { padding: 14px 20px 0; flex-shrink: 0; }
   .modal-close {
     float: right;
-    background: #EDE3D8; border: none; border-radius: 50%;
+    background: #F5E0DB; border: none; border-radius: 50%;
     width: 28px; height: 28px; cursor: pointer;
     font-size: 14px; color: var(--corin-mid);
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s;
   }
-  .modal-close:hover { background: #DDD0C0; }
+  .modal-close:hover { background: #EAC8C2; }
   .modal-product-icon { font-size: 28px; margin-bottom: 6px; display: block; }
   .modal-product-name {
     font-family: 'Playfair Display', serif;
@@ -230,10 +282,9 @@
   }
   .modal-product-price { font-size: 15px; font-weight: 500; color: var(--corin-orange); }
 
-  /* ── TABS ── */
   .modal-tabs {
     display: flex; gap: 0;
-    border-bottom: 1.5px solid #E8DFD3;
+    border-bottom: 1.5px solid #EAD9D5;
     margin-top: 16px;
     flex-shrink: 0;
   }
@@ -255,14 +306,14 @@
   .spec-section { margin-bottom: 18px; }
   .spec-section-title {
     font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #C8386B; font-weight: 500; margin-bottom: 8px;
+    color: var(--corin-amber); font-weight: 500; margin-bottom: 8px;
   }
   .spec-section p { font-size: 13px; color: var(--corin-dark); line-height: 1.65; }
 
   .spec-list { list-style: none; padding: 0; }
   .spec-list li {
     font-size: 13px; color: var(--corin-dark); line-height: 1.55;
-    padding: 6px 0; border-bottom: 0.5px solid #EDE3D8;
+    padding: 6px 0; border-bottom: 0.5px solid #EAD9D5;
     display: flex; align-items: flex-start; gap: 8px;
   }
   .spec-list li:last-child { border-bottom: none; }
@@ -272,19 +323,18 @@
   .warn-list li {
     font-size: 13px; color: var(--corin-dark); line-height: 1.55;
     padding: 7px 10px; margin-bottom: 6px;
-    background: #fce8f0; border-left: 3px solid var(--corin-orange);
+    background: #FDF5F3; border-left: 3px solid var(--corin-orange);
     border-radius: 0 6px 6px 0;
   }
   .warn-list li strong { color: var(--corin-dark); font-weight: 500; }
 
-  /* ── MODAL FOOTER (CTA + Carrinho) ── */
   .modal-footer {
     flex-shrink: 0;
     padding: 12px 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    border-top: 0.5px solid #E8DFD3;
+    border-top: 0.5px solid #EAD9D5;
     background: var(--corin-cream);
   }
   .modal-qty-row {
@@ -297,13 +347,13 @@
   .qty-controls { display: flex; align-items: center; gap: 6px; }
   .qty-btn {
     width: 28px; height: 28px;
-    background: #EDE3D8; border: none; border-radius: 6px;
+    background: #F5E0DB; border: none; border-radius: 6px;
     font-size: 16px; cursor: pointer; color: var(--corin-dark);
     display: flex; align-items: center; justify-content: center;
     transition: background 0.15s;
     font-family: 'DM Sans', sans-serif;
   }
-  .qty-btn:hover { background: #D4C4B0; }
+  .qty-btn:hover { background: #EAC8C2; }
   .qty-num { font-size: 14px; font-weight: 500; color: var(--corin-dark); min-width: 20px; text-align: center; }
 
   .modal-add-btn {
@@ -314,14 +364,14 @@
     transition: background 0.2s, transform 0.1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .modal-add-btn:hover { background: #a82558; transform: translateY(-1px); }
+  .modal-add-btn:hover { background: #8D3E31; transform: translateY(-1px); }
   .modal-add-btn.success { background: #2A9D5C; }
   .modal-add-btn.success:hover { background: #238A4F; }
 
   .modal-buy-btn {
     display: block; width: 100%;
     background: transparent; color: var(--corin-mid);
-    border: 1.5px solid #E8DFD3; border-radius: 10px; padding: 10px;
+    border: 1.5px solid #EAD9D5; border-radius: 10px; padding: 10px;
     font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
     cursor: pointer; letter-spacing: 0.03em;
     transition: border-color 0.2s, color 0.2s;
@@ -333,7 +383,7 @@
   .cart-overlay {
     display: none;
     position: fixed; inset: 0;
-    background: rgba(26,18,8,0.5);
+    background: rgba(141,45,26,0.4);
     z-index: 200;
   }
   .cart-overlay.open { display: block; }
@@ -354,7 +404,7 @@
 
   .cart-drawer-header {
     padding: 20px 20px 16px;
-    border-bottom: 1px solid #E8DFD3;
+    border-bottom: 1px solid #EAD9D5;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -362,7 +412,7 @@
   }
   .cart-drawer-title {
     font-family: 'Playfair Display', serif;
-    color: #C8386B;
+    color: var(--corin-amber);
     font-size: 17px;
     display: flex; align-items: center; gap: 8px;
   }
@@ -389,7 +439,7 @@
     display: flex;
     gap: 12px;
     padding: 12px 0;
-    border-bottom: 0.5px solid #EDE3D8;
+    border-bottom: 0.5px solid #EAD9D5;
     animation: fadeIn 0.25s ease;
   }
   .cart-item:last-child { border-bottom: none; }
@@ -405,19 +455,18 @@
   .cart-item-qty-row { display: flex; align-items: center; gap: 5px; }
   .ci-qty-btn {
     width: 22px; height: 22px; border-radius: 5px;
-    background: #EDE3D8; border: none; cursor: pointer;
+    background: #F5E0DB; border: none; cursor: pointer;
     font-size: 13px; color: var(--corin-dark);
     display: flex; align-items: center; justify-content: center;
     transition: background 0.15s;
   }
-  .ci-qty-btn:hover { background: #D4C4B0; }
+  .ci-qty-btn:hover { background: #EAC8C2; }
   .ci-qty-btn.remove { color: #C0392B; }
   .ci-qty-num { font-size: 12px; font-weight: 500; color: var(--corin-dark); min-width: 16px; text-align: center; }
 
-  /* ── CART FOOTER ── */
   .cart-footer {
     padding: 16px;
-    border-top: 1px solid #E8DFD3;
+    border-top: 1px solid #EAD9D5;
     background: #fff;
   }
   .cart-summary-row {
@@ -430,7 +479,7 @@
     display: flex; justify-content: space-between; align-items: center;
     margin: 10px 0 14px;
     padding-top: 10px;
-    border-top: 1px solid #E8DFD3;
+    border-top: 1px solid #EAD9D5;
   }
   .cart-total-lbl { font-size: 14px; font-weight: 500; color: var(--corin-dark); }
   .cart-total-val { font-size: 17px; font-weight: 700; color: var(--corin-orange); }
@@ -442,8 +491,8 @@
     transition: background 0.2s, transform 0.1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .checkout-btn:hover { background: #a82558; transform: translateY(-1px); }
-  .checkout-btn:disabled { background: #d4a0b5; cursor: not-allowed; transform: none; }
+  .checkout-btn:hover { background: #8D3E31; transform: translateY(-1px); }
+  .checkout-btn:disabled { background: #C9AFA9; cursor: not-allowed; transform: none; }
   .clear-cart-btn {
     width: 100%; background: none; border: none; color: var(--corin-mid);
     font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer;
@@ -473,51 +522,38 @@
   .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
   .toast-icon { font-size: 16px; }
 
-  /* ══════════════════════════════════════
-     RESPONSIVIDADE
-  ══════════════════════════════════════ */
-
-  /* ── Desktop / tablet largo (≥ 768px) ── */
+  /* ── RESPONSIVIDADE ── */
   @media (min-width: 768px) {
     #corin-app { max-width: 680px; margin: 0 auto; }
-
-    .header { padding: 20px 36px; }
+    .header { padding: 20px 36px; top: 42px; }
     .header-logo { font-size: 22px; }
-
     .home-hero { padding: 48px 40px 32px; }
     .hero-title { font-size: 32px; }
     .hero-desc { font-size: 15px; }
-
     .question-area { padding: 36px 32px 28px; }
     .options-grid { grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
     .option-btn { padding: 16px 14px; }
     .option-title { font-size: 12px; }
-
     .products-area { padding: 28px; }
     .products-grid { grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-
     .modal-sheet { max-height: 80vh; }
-
     .cart-drawer { width: 400px; }
-
     .toast { font-size: 14px; padding: 12px 22px; }
+    .ann-text { display: block; }
   }
 
-  /* ── Telas muito grandes (≥ 1024px) ── */
   @media (min-width: 1024px) {
     body { display: flex; flex-direction: column; align-items: center;
            min-height: 100vh; background: #EDE3D8; padding: 40px 20px; }
-
     #corin-app {
       max-width: 740px; width: 100%;
       border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(26,18,8,0.18);
+      overflow: visible;
+      box-shadow: 0 20px 60px rgba(141,45,26,0.2);
       min-height: auto;
     }
-
-    .header { border-radius: 0; }
-
+    .announcement-bar { border-radius: 20px 20px 0 0; top: 0; position: relative; }
+    .header { border-radius: 0; position: sticky; top: 0; }
     .modal-overlay { align-items: center; }
     .modal-sheet {
       border-radius: 20px;
@@ -526,29 +562,25 @@
       width: 90%;
     }
     @keyframes slideUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: translateY(0); } }
-
     .cart-drawer { width: 420px; }
   }
 
-  /* ── Celular pequeno (≤ 374px) ── */
   @media (max-width: 374px) {
-    .header { padding: 14px 16px; }
+    .header { padding: 14px 16px; top: 38px; }
     .header-logo { font-size: 17px; }
     .header-sub { display: none; }
     #cart-label { display: none; }
-
+    .announcement-bar { gap: 10px; padding: 7px 12px; }
+    .ann-social-link span { display: none; }
     .home-hero { padding: 24px 16px 18px; }
     .hero-title { font-size: 22px; }
-
     .question-area { padding: 20px 14px 16px; }
     .options-grid { gap: 8px; }
     .option-btn { padding: 11px 10px; }
     .option-icon { font-size: 20px; margin-bottom: 4px; }
     .option-title { font-size: 12px; }
     .option-hint { font-size: 10px; }
-
     .cta-btn { font-size: 13px; padding: 13px; }
-
     .products-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
     .product-card { padding: 12px 10px; }
     .product-name { font-size: 11.5px; }
@@ -556,50 +588,35 @@
     .product-footer { flex-direction: column; align-items: flex-start; gap: 6px; }
     .product-actions { width: 100%; justify-content: space-between; }
     .card-add-btn, .product-link { flex: 1; text-align: center; padding: 5px 6px; }
-
     .modal-header { padding: 10px 14px 0; }
     .modal-product-name { font-size: 16px; }
     .tab-btn { font-size: 11px; padding: 8px 2px; }
-
     .cart-drawer { width: 100vw; }
     .cart-footer { padding: 12px; }
     .checkout-btn { font-size: 13px; padding: 12px; }
-
-    .toast { font-size: 12px; padding: 9px 14px; max-width: 90vw;
-             white-space: normal; text-align: center; border-radius: 16px; }
+    .toast { font-size: 12px; padding: 9px 14px; max-width: 90vw; white-space: normal; text-align: center; border-radius: 16px; }
   }
 
-  /* ── Celular médio (375px – 479px) ── */
   @media (min-width: 375px) and (max-width: 479px) {
     .header { padding: 16px 20px; }
-
     .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     .product-footer { flex-wrap: wrap; gap: 6px; }
     .product-actions { width: 100%; justify-content: space-between; }
     .card-add-btn, .product-link { flex: 1; text-align: center; }
-
     .cart-drawer { width: 100vw; }
-
     .toast { max-width: 88vw; white-space: normal; text-align: center; }
   }
 
-  /* ── Tablet retrato (480px – 767px) ── */
   @media (min-width: 480px) and (max-width: 767px) {
     .header { padding: 16px 24px; }
-
     .options-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-
     .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-
     .product-footer { flex-wrap: wrap; gap: 6px; }
     .product-actions { width: 100%; justify-content: flex-end; }
-
     .cart-drawer { width: min(380px, 92vw); }
-
     .modal-sheet { max-height: 88vh; }
   }
 
-  /* ── Ajustes de toque para mobile (pointer: coarse) ── */
   @media (pointer: coarse) {
     .option-btn { min-height: 72px; }
     .qty-btn { width: 36px; height: 36px; font-size: 18px; }
@@ -610,101 +627,60 @@
     .cart-drawer-close { width: 36px; height: 36px; }
   }
 
-  /* ── Safe area para iPhones com notch / home bar ── */
   @supports (padding-bottom: env(safe-area-inset-bottom)) {
     .modal-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
     .cart-footer  { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
     .toast { bottom: calc(24px + env(safe-area-inset-bottom)); }
   }
-
-
-  /* ── LOGO IMAGE ── */
-  .header-logo-img {
-    height: 38px;
-    width: auto;
-    display: block;
-    filter: brightness(0) invert(1);
-  }
-
-  /* ── STICKY CART BAR ── */
-  .sticky-cart-bar {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    z-index: 90;
-    background: var(--corin-dark);
-    border-top: 2px solid var(--corin-pink);
-    padding: 13px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    transform: translateY(100%);
-    transition: transform 0.38s cubic-bezier(0.32,0.72,0,1);
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.22);
-  }
-  .sticky-cart-bar.visible { transform: translateY(0); }
-
-  .sticky-cart-left {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .sticky-cart-count {
-    background: var(--corin-pink);
-    color: #fff;
-    font-size: 11px; font-weight: 700;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .sticky-cart-label {
-    color: rgba(255,255,255,0.7);
-    font-size: 12px;
-  }
-  .sticky-cart-total {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .sticky-cart-btn {
-    background: var(--corin-pink);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 0.03em;
-    transition: background 0.2s, transform 0.1s;
-    display: flex; align-items: center; gap: 7px;
-    white-space: nowrap;
-  }
-  .sticky-cart-btn:hover { background: #a82558; transform: scale(1.02); }
-
-  /* push screen content up when bar is visible */
-  #corin-app.bar-visible { padding-bottom: 68px; }
-
-  @supports (padding-bottom: env(safe-area-inset-bottom)) {
-    .sticky-cart-bar { padding-bottom: calc(13px + env(safe-area-inset-bottom)); }
-    #corin-app.bar-visible { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
-  }
-
-  @media (max-width: 374px) {
-    .sticky-cart-bar { padding: 11px 14px; }
-    .sticky-cart-btn { padding: 9px 14px; font-size: 12px; }
-    .sticky-cart-total { font-size: 13px; }
-  }
-
 </style>
 </head>
 <body>
 <div id="corin-app">
 
+  <!-- BARRA DE ANÚNCIO -->
+  <div class="announcement-bar">
+    <span class="ann-text">Siga-nos nas redes sociais</span>
+    <div class="ann-socials">
+      <!-- Instagram -->
+      <a class="ann-social-link" href="https://www.instagram.com/corin.boutique/" target="_blank" rel="noopener">
+        <div class="ann-social-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <span>Instagram</span>
+      </a>
+
+      <div class="ann-divider"></div>
+
+      <!-- Facebook -->
+      <a class="ann-social-link" href="https://web.facebook.com/corincorantes" target="_blank" rel="noopener">
+        <div class="ann-social-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <span>Facebook</span>
+      </a>
+
+      <div class="ann-divider"></div>
+
+      <!-- WhatsApp -->
+      <a class="ann-social-link" href="https://api.whatsapp.com/send/?phone=5511947962580&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+        <div class="ann-social-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </div>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
   <!-- HEADER -->
   <div class="header">
     <div>
-      <img src="https://acdn-us.mitiendanube.com/stores/002/234/964/themes/common/logo-511941505-1722272848-372ced23c5362bafe998fbe29472aea31722272848-480-0.webp" alt="Corin Corantes" class="header-logo-img">
+      <div class="header-logo">Corin Corantes</div>
       <div class="header-sub">Catálogo Interativo</div>
     </div>
     <button class="cart-btn" onclick="openCart()">
@@ -803,7 +779,6 @@
       <div class="tab-panel" id="tab-uso"></div>
       <div class="tab-panel" id="tab-precaucoes"></div>
     </div>
-    <!-- FOOTER COM QTD + BOTÕES -->
     <div class="modal-footer">
       <div class="modal-qty-row">
         <span class="qty-label">Quantidade</span>
@@ -861,328 +836,95 @@
 </div>
 
 <script>
-/* ══════════════════════════════════════
-   DATA
-══════════════════════════════════════ */
 const data = {
   'colorir-alcool': {
     ctx: 'Colorir álcool / vela / gel',
     tip: '<strong>Dica de uso:</strong> Para velas, use 0,05% a 0,1% do peso total. Os corantes base álcool não mancham a cera e mantêm a cor após solidificação.',
     products: [
-      {
-        name: 'Corante Base Álcool — Rodamina', icon: '🩷', color: '#E84B8A22',
-        price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-rodamina-alcool/',
-        desc: 'Alta concentração e cor vibrante. Ideal para velas, gel combustível e álcool colorido.',
-        visao: { resumo: 'Corante sintético de alta pureza, solúvel em álcool etílico, isopropílico e outros solventes orgânicos. Produz colorações vibrantes mesmo em baixas concentrações, sendo amplamente usado na fabricação artesanal e industrial de velas, géis combustíveis e álcool colorido.', itens: ['Base: álcool / solvente', 'Apresentação: pó concentrado', 'Rendimento: 100g colore até 100L', 'Cor na embalagem: rosa/fúcsia intenso'] },
-        uso: { intro: 'Dissolva o corante em álcool antes de adicionar à formulação principal para garantir uniformidade.', passos: ['Pese o corante: use entre 0,01% e 0,1% do peso total da formulação.','Dissolva em pequena quantidade de álcool 70% ou 92% antes de misturar.','Adicione devagar à formulação, mexendo sempre.','Para velas: adicione à cera derretida (60–70°C) e mexa bem antes de verter.','Teste a cor em uma pequena amostra antes de produzir em larga escala.'] },
-        precaucoes: ['<strong>Uso externo apenas.</strong> Não é aprovado para uso em alimentos ou cosméticos que entrem em contato com mucosas.','<strong>Evite contato com os olhos.</strong> Em caso de contato, lave abundantemente com água.','<strong>Use luvas</strong> durante o manuseio — o corante mancha a pele e tecidos.','<strong>Mantenha fora do alcance de crianças</strong> e animais domésticos.','Armazene em local fresco, seco e protegido da luz solar direta.','Em caso de ingestão acidental, consulte um médico imediatamente.']
-      },
-      {
-        name: 'Corante Verde Malaquite', icon: '🟢', color: '#2D8C6E22',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-malaquite1/',
-        desc: 'Verde intenso, solúvel em álcool. Ótimo para gel combustível e sabonetes em barra.',
-        visao: { resumo: 'Corante verde de alta intensidade, derivado da classe dos trifenilmetanos. Excelente solubilidade em álcool e solventes, com tom verde-azulado característico. Muito utilizado em artesanato, velas e produtos de limpeza coloridos.', itens: ['Base: álcool / solvente','Apresentação: pó concentrado','Tom: verde-azulado vibrante','Rendimento: 100g colore até 80L'] },
-        uso: { intro: 'Dissolva sempre em álcool antes de incorporar à formulação.', passos: ['Use de 0,02% a 0,15% em relação ao peso total.','Dissolva o pó em álcool etílico antes de misturar ao produto base.','Para gel combustível: adicione ao gel ainda fluido e misture bem.','Para sabonetes em barra: adicione na fase de traço.','Ajuste a quantidade até atingir a intensidade desejada.'] },
-        precaucoes: ['<strong>Não destinado a uso alimentício</strong> ou contato com mucosas.','<strong>Use luvas e avental</strong> — mancha intensamente pele, roupas e superfícies.','Evite inalação do pó. Trabalhe em ambiente ventilado.','Mantenha afastado de crianças.','Armazene em recipiente fechado, longe de umidade e luz.']
-      },
-      {
-        name: 'Corante Violeta Metil', icon: '🟣', color: '#7B4FA622',
-        price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-violeta-metil-alcool-agua/',
-        desc: 'Tom violeta rico, excelente fixação em álcool e solventes.',
-        visao: { resumo: 'Corante violeta da família dos trifenilmetanos, com boa solubilidade tanto em álcool quanto em água. Produz tons que variam do violeta ao azul dependendo da concentração usada.', itens: ['Base: álcool ou água','Apresentação: pó fino','Tom: violeta a azul-violeta','Rendimento: alto — use com cautela'] },
-        uso: { intro: 'Por ser solúvel em álcool e água, pode ser utilizado em dois tipos de formulação.', passos: ['Em álcool: dissolva 0,01–0,05% em álcool etílico e incorpore à formulação.','Em água: dissolva em água morna antes de misturar ao produto.','Use doses muito pequenas — o corante tem altíssima pigmentação.','Para misturar cores: combine com Rodamina para tons roxos quentes.','Faça testes graduais até atingir o tom desejado.'] },
-        precaucoes: ['<strong>Altamente pigmentante:</strong> use luvas, avental e proteja superfícies.','Não recomendado para alimentos ou produtos cosméticos de uso mucoso.','Evite contato prolongado com a pele.','Armazene longe de luz solar e umidade.','Em caso de contato com os olhos, lave com água corrente por 15 minutos.']
-      },
-      {
-        name: 'Corante Amarelo Auramina', icon: '🟡', color: '#E6A81722',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-auramina1/',
-        desc: 'Amarelo luminoso, solúvel em álcool. Muito usado em velas e álcool perfumado.',
-        visao: { resumo: 'Corante amarelo intenso, solúvel em álcool e solventes orgânicos. Produz tons amarelos vibrantes e luminosos. Excelente estabilidade à luz.', itens: ['Base: álcool / solvente','Apresentação: pó granulado','Tom: amarelo-ouro vibrante','Estabilidade: boa resistência à luz UV'] },
-        uso: { intro: 'Ideal para formulações à base de álcool. Dissolva antes de incorporar.', passos: ['Use entre 0,02% e 0,1% do peso total da formulação.','Dissolva em álcool 70% ou 92% até completa homogeneização.','Adicione à formulação principal sob agitação constante.','Para velas: adicione à cera entre 65–70°C.','Para álcool colorido: dissolva e misture ao álcool base perfumado.'] },
-        precaucoes: ['<strong>Não é corante alimentício.</strong> Não utilize em alimentos ou bebidas.','Use luvas durante o manuseio para evitar manchas na pele.','Evite inalação. Trabalhe em local bem ventilado.','Mantenha em embalagem fechada, protegido de umidade.','Guarde fora do alcance de crianças.']
-      }
+      { name: 'Corante Base Álcool — Rodamina', icon: '🩷', color: '#E84B8A22', price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-rodamina-alcool/', desc: 'Alta concentração e cor vibrante. Ideal para velas, gel combustível e álcool colorido.', visao: { resumo: 'Corante sintético de alta pureza, solúvel em álcool etílico, isopropílico e outros solventes orgânicos. Produz colorações vibrantes mesmo em baixas concentrações, sendo amplamente usado na fabricação artesanal e industrial de velas, géis combustíveis e álcool colorido.', itens: ['Base: álcool / solvente', 'Apresentação: pó concentrado', 'Rendimento: 100g colore até 100L', 'Cor na embalagem: rosa/fúcsia intenso'] }, uso: { intro: 'Dissolva o corante em álcool antes de adicionar à formulação principal para garantir uniformidade.', passos: ['Pese o corante: use entre 0,01% e 0,1% do peso total da formulação.','Dissolva em pequena quantidade de álcool 70% ou 92% antes de misturar.','Adicione devagar à formulação, mexendo sempre.','Para velas: adicione à cera derretida (60–70°C) e mexa bem antes de verter.','Teste a cor em uma pequena amostra antes de produzir em larga escala.'] }, precaucoes: ['<strong>Uso externo apenas.</strong> Não é aprovado para uso em alimentos ou cosméticos que entrem em contato com mucosas.','<strong>Evite contato com os olhos.</strong> Em caso de contato, lave abundantemente com água.','<strong>Use luvas</strong> durante o manuseio — o corante mancha a pele e tecidos.','<strong>Mantenha fora do alcance de crianças</strong> e animais domésticos.','Armazene em local fresco, seco e protegido da luz solar direta.','Em caso de ingestão acidental, consulte um médico imediatamente.'] },
+      { name: 'Corante Verde Malaquite', icon: '🟢', color: '#2D8C6E22', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-malaquite1/', desc: 'Verde intenso, solúvel em álcool. Ótimo para gel combustível e sabonetes em barra.', visao: { resumo: 'Corante verde de alta intensidade, derivado da classe dos trifenilmetanos. Excelente solubilidade em álcool e solventes, com tom verde-azulado característico.', itens: ['Base: álcool / solvente','Apresentação: pó concentrado','Tom: verde-azulado vibrante','Rendimento: 100g colore até 80L'] }, uso: { intro: 'Dissolva sempre em álcool antes de incorporar à formulação.', passos: ['Use de 0,02% a 0,15% em relação ao peso total.','Dissolva o pó em álcool etílico antes de misturar ao produto base.','Para gel combustível: adicione ao gel ainda fluido e misture bem.','Para sabonetes em barra: adicione na fase de traço.','Ajuste a quantidade até atingir a intensidade desejada.'] }, precaucoes: ['<strong>Não destinado a uso alimentício</strong> ou contato com mucosas.','<strong>Use luvas e avental</strong> — mancha intensamente pele, roupas e superfícies.','Evite inalação do pó. Trabalhe em ambiente ventilado.','Mantenha afastado de crianças.','Armazene em recipiente fechado, longe de umidade e luz.'] },
+      { name: 'Corante Violeta Metil', icon: '🟣', color: '#7B4FA622', price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-violeta-metil-alcool-agua/', desc: 'Tom violeta rico, excelente fixação em álcool e solventes.', visao: { resumo: 'Corante violeta da família dos trifenilmetanos, com boa solubilidade tanto em álcool quanto em água. Produz tons que variam do violeta ao azul dependendo da concentração usada.', itens: ['Base: álcool ou água','Apresentação: pó fino','Tom: violeta a azul-violeta','Rendimento: alto — use com cautela'] }, uso: { intro: 'Por ser solúvel em álcool e água, pode ser utilizado em dois tipos de formulação.', passos: ['Em álcool: dissolva 0,01–0,05% em álcool etílico e incorpore à formulação.','Em água: dissolva em água morna antes de misturar ao produto.','Use doses muito pequenas — o corante tem altíssima pigmentação.','Para misturar cores: combine com Rodamina para tons roxos quentes.','Faça testes graduais até atingir o tom desejado.'] }, precaucoes: ['<strong>Altamente pigmentante:</strong> use luvas, avental e proteja superfícies.','Não recomendado para alimentos ou produtos cosméticos de uso mucoso.','Evite contato prolongado com a pele.','Armazene longe de luz solar e umidade.','Em caso de contato com os olhos, lave com água corrente por 15 minutos.'] },
+      { name: 'Corante Amarelo Auramina', icon: '🟡', color: '#E6A81722', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-auramina1/', desc: 'Amarelo luminoso, solúvel em álcool. Muito usado em velas e álcool perfumado.', visao: { resumo: 'Corante amarelo intenso, solúvel em álcool e solventes orgânicos. Produz tons amarelos vibrantes e luminosos. Excelente estabilidade à luz.', itens: ['Base: álcool / solvente','Apresentação: pó granulado','Tom: amarelo-ouro vibrante','Estabilidade: boa resistência à luz UV'] }, uso: { intro: 'Ideal para formulações à base de álcool. Dissolva antes de incorporar.', passos: ['Use entre 0,02% e 0,1% do peso total da formulação.','Dissolva em álcool 70% ou 92% até completa homogeneização.','Adicione à formulação principal sob agitação constante.','Para velas: adicione à cera entre 65–70°C.','Para álcool colorido: dissolva e misture ao álcool base perfumado.'] }, precaucoes: ['<strong>Não é corante alimentício.</strong> Não utilize em alimentos ou bebidas.','Use luvas durante o manuseio para evitar manchas na pele.','Evite inalação. Trabalhe em local bem ventilado.','Mantenha em embalagem fechada, protegido de umidade.','Guarde fora do alcance de crianças.'] }
     ]
   },
   'colorir-agua': {
     ctx: 'Colorir base água',
     tip: '<strong>Dica de uso:</strong> Dilua o corante em pequena quantidade de água antes de adicionar à formulação.',
     products: [
-      {
-        name: 'Corante Azul Turquesa — Base Água', icon: '💙', color: '#1E90FF22',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-azul-turquesa1/',
-        desc: 'Cor intensa, estável e de fácil manipulação. Ideal para sabonetes líquidos e shampoos.',
-        visao: { resumo: 'Corante azul turquesa solúvel em água, com excelente estabilidade em formulações aquosas de pH neutro a levemente ácido.', itens: ['Base: água','Apresentação: pó solúvel','Tom: azul-turquesa','pH ideal: 5 a 8'] },
-        uso: { intro: 'Dissolva em água antes de incorporar para evitar pontos de cor.', passos: ['Pese entre 0,01% e 0,05% em relação ao peso total.','Dissolva em água morna (40–50°C) até completa dissolução.','Adicione à formulação aquosa sob agitação.','Verifique o pH — acima de 9 pode ocorrer alteração de tom.','Ajuste a quantidade para obter a intensidade desejada.'] },
-        precaucoes: ['Não destinado a uso alimentício.','Pode manchar superfícies porosas e tecidos. Use luvas.','Evite formulações com pH muito alcalino (acima de 9).','Armazene em local fresco e seco, protegido da luz.','Mantenha longe do alcance de crianças.']
-      },
-      {
-        name: 'Corante Verde Fluoresceína', icon: '🟢', color: '#3CB04322',
-        price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-fluoresceina/',
-        desc: 'Verde fluorescente vibrante, altamente solúvel em água. Efeito visual marcante.',
-        visao: { resumo: 'Corante fluorescente verde-amarelado com excelente solubilidade em água. Apresenta efeito luminoso único, especialmente sob luz UV.', itens: ['Base: água','Apresentação: pó fino','Tom: verde-fluorescente','Efeito especial: brilha sob luz UV'] },
-        uso: { intro: 'Dissolva em água antes de incorporar. Dose pequena já produz efeito intenso.', passos: ['Use entre 0,01% e 0,03% — é muito concentrado.','Dissolva em água morna antes de adicionar à formulação.','Incorpore sob agitação constante.','Teste sob luz UV para verificar o efeito fluorescente.','Evite misturar com corantes muito opacos que suprimam o efeito.'] },
-        precaucoes: ['Não aprovado para alimentos.','Use luvas — mancha pele e superfícies intensamente.','Sensível a pH muito ácido — pode perder a fluorescência abaixo de pH 4.','Proteja da luz solar direta para conservar a cor.','Evite contato com os olhos.']
-      },
-      {
-        name: 'Corante Rodamina Água', icon: '🩷', color: '#E84B8A22',
-        price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-rodamina3/',
-        desc: 'Rosa/pink intenso, estável em formulações aquosas. Muito popular em cosméticos.',
-        visao: { resumo: 'Corante rosa/fúcsia de alta intensidade, solúvel em água. Estável em ampla faixa de pH e temperatura.', itens: ['Base: água','Apresentação: pó','Tom: rosa a fúcsia','Estabilidade: excelente em pH 5–9'] },
-        uso: { intro: 'Dissolva sempre em água antes de incorporar à formulação.', passos: ['Dose recomendada: 0,01% a 0,05%.','Dissolva em água morna e adicione sob agitação.','Estável em sabonetes e shampoos com pH 5–9.','Para tons mais suaves, reduza a concentração pela metade.','Combine com Amarelo Tartrazina para tons de laranja-coral.'] },
-        precaucoes: ['Não é corante alimentício.','Use luvas — mancha intensamente.','Evite contato com os olhos. Em caso de contato, lave com água.','Armazene protegido da luz para evitar desbotamento.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Laranja Água', icon: '🟠', color: '#E87B1A22',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-laranja-agua/',
-        desc: 'Laranja vivo e uniforme. Excelente para sabonetes líquidos e produtos de banho.',
-        visao: { resumo: 'Corante laranja solúvel em água, com tom quente e vibrante. Excelente dispersão em formulações aquosas.', itens: ['Base: água','Apresentação: pó solúvel','Tom: laranja quente','pH ideal: 5 a 8'] },
-        uso: { intro: 'Dissolva em água e adicione à formulação sob agitação.', passos: ['Use 0,02% a 0,08% em relação ao peso total.','Dissolva em água morna antes de misturar.','Adicione à fase aquosa da formulação.','Misture com Rodamina para tons de laranja-avermelhado.','Ajuste a concentração conforme a intensidade desejada.'] },
-        precaucoes: ['Não aprovado para alimentos ou mucosas.','Use luvas durante o manuseio.','Armazene em local fresco e seco.','Evite contato com os olhos.','Guarde fora do alcance de crianças.']
-      }
+      { name: 'Corante Azul Turquesa — Base Água', icon: '💙', color: '#1E90FF22', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-azul-turquesa1/', desc: 'Cor intensa, estável e de fácil manipulação. Ideal para sabonetes líquidos e shampoos.', visao: { resumo: 'Corante azul turquesa solúvel em água, com excelente estabilidade em formulações aquosas de pH neutro a levemente ácido.', itens: ['Base: água','Apresentação: pó solúvel','Tom: azul-turquesa','pH ideal: 5 a 8'] }, uso: { intro: 'Dissolva em água antes de incorporar para evitar pontos de cor.', passos: ['Pese entre 0,01% e 0,05% em relação ao peso total.','Dissolva em água morna (40–50°C) até completa dissolução.','Adicione à formulação aquosa sob agitação.','Verifique o pH — acima de 9 pode ocorrer alteração de tom.','Ajuste a quantidade para obter a intensidade desejada.'] }, precaucoes: ['Não destinado a uso alimentício.','Pode manchar superfícies porosas e tecidos. Use luvas.','Evite formulações com pH muito alcalino (acima de 9).','Armazene em local fresco e seco, protegido da luz.','Mantenha longe do alcance de crianças.'] },
+      { name: 'Corante Verde Fluoresceína', icon: '🟢', color: '#3CB04322', price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-fluoresceina/', desc: 'Verde fluorescente vibrante, altamente solúvel em água. Efeito visual marcante.', visao: { resumo: 'Corante fluorescente verde-amarelado com excelente solubilidade em água. Apresenta efeito luminoso único, especialmente sob luz UV.', itens: ['Base: água','Apresentação: pó fino','Tom: verde-fluorescente','Efeito especial: brilha sob luz UV'] }, uso: { intro: 'Dissolva em água antes de incorporar. Dose pequena já produz efeito intenso.', passos: ['Use entre 0,01% e 0,03% — é muito concentrado.','Dissolva em água morna antes de adicionar à formulação.','Incorpore sob agitação constante.','Teste sob luz UV para verificar o efeito fluorescente.','Evite misturar com corantes muito opacos que suprimam o efeito.'] }, precaucoes: ['Não aprovado para alimentos.','Use luvas — mancha pele e superfícies intensamente.','Sensível a pH muito ácido — pode perder a fluorescência abaixo de pH 4.','Proteja da luz solar direta para conservar a cor.','Evite contato com os olhos.'] },
+      { name: 'Corante Rodamina Água', icon: '🩷', color: '#E84B8A22', price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-rodamina3/', desc: 'Rosa/pink intenso, estável em formulações aquosas. Muito popular em cosméticos.', visao: { resumo: 'Corante rosa/fúcsia de alta intensidade, solúvel em água. Estável em ampla faixa de pH e temperatura.', itens: ['Base: água','Apresentação: pó','Tom: rosa a fúcsia','Estabilidade: excelente em pH 5–9'] }, uso: { intro: 'Dissolva sempre em água antes de incorporar à formulação.', passos: ['Dose recomendada: 0,01% a 0,05%.','Dissolva em água morna e adicione sob agitação.','Estável em sabonetes e shampoos com pH 5–9.','Para tons mais suaves, reduza a concentração pela metade.','Combine com Amarelo Tartrazina para tons de laranja-coral.'] }, precaucoes: ['Não é corante alimentício.','Use luvas — mancha intensamente.','Evite contato com os olhos. Em caso de contato, lave com água.','Armazene protegido da luz para evitar desbotamento.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Corante Laranja Água', icon: '🟠', color: '#E87B1A22', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-laranja-agua/', desc: 'Laranja vivo e uniforme. Excelente para sabonetes líquidos e produtos de banho.', visao: { resumo: 'Corante laranja solúvel em água, com tom quente e vibrante. Excelente dispersão em formulações aquosas.', itens: ['Base: água','Apresentação: pó solúvel','Tom: laranja quente','pH ideal: 5 a 8'] }, uso: { intro: 'Dissolva em água e adicione à formulação sob agitação.', passos: ['Use 0,02% a 0,08% em relação ao peso total.','Dissolva em água morna antes de misturar.','Adicione à fase aquosa da formulação.','Misture com Rodamina para tons de laranja-avermelhado.','Ajuste a concentração conforme a intensidade desejada.'] }, precaucoes: ['Não aprovado para alimentos ou mucosas.','Use luvas durante o manuseio.','Armazene em local fresco e seco.','Evite contato com os olhos.','Guarde fora do alcance de crianças.'] }
     ]
   },
   'colorir-oleo': {
     ctx: 'Colorir base oleosa',
     tip: '<strong>Dica de uso:</strong> Misture diretamente na fase oleosa da formulação.',
     products: [
-      {
-        name: 'Corante Vermelho ao Óleo', icon: '🔴', color: '#CC000022',
-        price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/corante-vermelho-ao-oleo/',
-        desc: 'Altamente estável e concentrado. Perfeito para cremes, óleos corporais e cosméticos.',
-        visao: { resumo: 'Corante lipossolúvel vermelho de alta concentração. Dissolve diretamente em óleos vegetais, manteigas e ceras.', itens: ['Base: óleos e solventes orgânicos','Apresentação: pó lipossolúvel','Tom: vermelho-carmim','Não migra para fase aquosa'] },
-        uso: { intro: 'Incorpore diretamente na fase oleosa aquecida da formulação.', passos: ['Use entre 0,05% e 0,3% em relação ao peso total.','Aqueça o óleo ou manteiga a 60–70°C.','Adicione o corante diretamente e mexa até dissolver completamente.','Incorpore à emulsão sempre pela fase oleosa.','Não adicione à fase aquosa — não será solúvel.'] },
-        precaucoes: ['Não é corante alimentício.','Use luvas — mancha pele e superfícies oleosas.','Não misturar com água pura — precipita.','Armazene em local fresco, seco e ao abrigo da luz.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Amarelo ao Óleo', icon: '🟡', color: '#E6A81722',
-        price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-ao-oleo1/',
-        desc: 'Amarelo vibrante solúvel em óleos e manteigas. Excelente fixação e estabilidade.',
-        visao: { resumo: 'Corante lipossolúvel amarelo-ouro, com excelente estabilidade térmica. Ideal para formulações cosméticas com óleos vegetais, manteigas e ceras.', itens: ['Base: óleos e manteigas','Apresentação: pó lipossolúvel','Tom: amarelo-ouro','Estável até 80°C'] },
-        uso: { intro: 'Adicione à fase oleosa aquecida e misture bem antes de emulsionar.', passos: ['Dose: 0,05% a 0,2% em relação ao peso total.','Aqueça o óleo a 60–70°C antes de adicionar o corante.','Dissolva completamente sob agitação.','Combine com Vermelho ao Óleo para tons de laranja.','Incorpore sempre antes de adicionar a fase aquosa.'] },
-        precaucoes: ['Não aprovado para alimentos.','Use luvas e proteção para superfícies.','Não misturar diretamente com água.','Guarde em embalagem fechada, longe de luz e calor excessivo.','Fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Verde Óleo', icon: '🟢', color: '#2D8C6E22',
-        price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-oleo/',
-        desc: 'Verde natural, ideal para formulações orgânicas, cremes e manteigas corporais.',
-        visao: { resumo: 'Corante lipossolúvel verde, com aspecto natural e orgânico. Excelente para cremes, manteigas corporais e formulações naturais.', itens: ['Base: óleos e ceras','Apresentação: pó lipossolúvel','Tom: verde-natural','Aspecto orgânico'] },
-        uso: { intro: 'Incorpore à fase oleosa aquecida.', passos: ['Use 0,05% a 0,25% do peso total.','Derreta o óleo ou manteiga e adicione o corante.','Misture bem até dissolução completa.','Para cremes: incorpore antes da emulsificação.','Combine com Amarelo ao Óleo para tons verde-oliva.'] },
-        precaucoes: ['Não destinado a uso alimentício.','Use luvas durante o manuseio.','Armazene ao abrigo da luz e umidade.','Não é solúvel em água.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Laranja ao Óleo', icon: '🟠', color: '#E87B1A22',
-        price: 'R$ 24,00', priceNum: 24.00, url: 'https://www.corincorantes.com.br/produtos/corante-laranja-ao-oleo/',
-        desc: 'Tom laranja cálido e uniforme em bases oleosas. Alta concentração de pigmento.',
-        visao: { resumo: 'Corante laranja lipossolúvel, de alta concentração e fácil dissolução em óleos e manteigas. Produz tons quentes e uniformes.', itens: ['Base: óleos e solventes orgânicos','Apresentação: pó lipossolúvel','Tom: laranja-quente','Alta concentração'] },
-        uso: { intro: 'Dissolva na fase oleosa aquecida da formulação.', passos: ['Dose: 0,03% a 0,2% em relação ao peso total.','Aqueça o óleo a 60–70°C e dissolva o corante.','Mexa até completa homogeneização.','Incorpore à formulação pela fase oleosa.','Para velas: adicione à cera derretida antes de verter.'] },
-        precaucoes: ['Não é corante alimentício.','Use luvas para evitar manchas.','Não é solúvel em água pura.','Armazene em local fresco e seco.','Guarde fora do alcance de crianças.']
-      }
+      { name: 'Corante Vermelho ao Óleo', icon: '🔴', color: '#CC000022', price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/corante-vermelho-ao-oleo/', desc: 'Altamente estável e concentrado. Perfeito para cremes, óleos corporais e cosméticos.', visao: { resumo: 'Corante lipossolúvel vermelho de alta concentração. Dissolve diretamente em óleos vegetais, manteigas e ceras.', itens: ['Base: óleos e solventes orgânicos','Apresentação: pó lipossolúvel','Tom: vermelho-carmim','Não migra para fase aquosa'] }, uso: { intro: 'Incorpore diretamente na fase oleosa aquecida da formulação.', passos: ['Use entre 0,05% e 0,3% em relação ao peso total.','Aqueça o óleo ou manteiga a 60–70°C.','Adicione o corante diretamente e mexa até dissolver completamente.','Incorpore à emulsão sempre pela fase oleosa.','Não adicione à fase aquosa — não será solúvel.'] }, precaucoes: ['Não é corante alimentício.','Use luvas — mancha pele e superfícies oleosas.','Não misturar com água pura — precipita.','Armazene em local fresco, seco e ao abrigo da luz.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Corante Amarelo ao Óleo', icon: '🟡', color: '#E6A81722', price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-ao-oleo1/', desc: 'Amarelo vibrante solúvel em óleos e manteigas. Excelente fixação e estabilidade.', visao: { resumo: 'Corante lipossolúvel amarelo-ouro, com excelente estabilidade térmica. Ideal para formulações cosméticas com óleos vegetais, manteigas e ceras.', itens: ['Base: óleos e manteigas','Apresentação: pó lipossolúvel','Tom: amarelo-ouro','Estável até 80°C'] }, uso: { intro: 'Adicione à fase oleosa aquecida e misture bem antes de emulsionar.', passos: ['Dose: 0,05% a 0,2% em relação ao peso total.','Aqueça o óleo a 60–70°C antes de adicionar o corante.','Dissolva completamente sob agitação.','Combine com Vermelho ao Óleo para tons de laranja.','Incorpore sempre antes de adicionar a fase aquosa.'] }, precaucoes: ['Não aprovado para alimentos.','Use luvas e proteção para superfícies.','Não misturar diretamente com água.','Guarde em embalagem fechada, longe de luz e calor excessivo.','Fora do alcance de crianças.'] },
+      { name: 'Corante Verde Óleo', icon: '🟢', color: '#2D8C6E22', price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-oleo/', desc: 'Verde natural, ideal para formulações orgânicas, cremes e manteigas corporais.', visao: { resumo: 'Corante lipossolúvel verde, com aspecto natural e orgânico. Excelente para cremes, manteigas corporais e formulações naturais.', itens: ['Base: óleos e ceras','Apresentação: pó lipossolúvel','Tom: verde-natural','Aspecto orgânico'] }, uso: { intro: 'Incorpore à fase oleosa aquecida.', passos: ['Use 0,05% a 0,25% do peso total.','Derreta o óleo ou manteiga e adicione o corante.','Misture bem até dissolução completa.','Para cremes: incorpore antes da emulsificação.','Combine com Amarelo ao Óleo para tons verde-oliva.'] }, precaucoes: ['Não destinado a uso alimentício.','Use luvas durante o manuseio.','Armazene ao abrigo da luz e umidade.','Não é solúvel em água.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Corante Laranja ao Óleo', icon: '🟠', color: '#E87B1A22', price: 'R$ 24,00', priceNum: 24.00, url: 'https://www.corincorantes.com.br/produtos/corante-laranja-ao-oleo/', desc: 'Tom laranja cálido e uniforme em bases oleosas. Alta concentração de pigmento.', visao: { resumo: 'Corante laranja lipossolúvel, de alta concentração e fácil dissolução em óleos e manteigas. Produz tons quentes e uniformes.', itens: ['Base: óleos e solventes orgânicos','Apresentação: pó lipossolúvel','Tom: laranja-quente','Alta concentração'] }, uso: { intro: 'Dissolva na fase oleosa aquecida da formulação.', passos: ['Dose: 0,03% a 0,2% em relação ao peso total.','Aqueça o óleo a 60–70°C e dissolva o corante.','Mexa até completa homogeneização.','Incorpore à formulação pela fase oleosa.','Para velas: adicione à cera derretida antes de verter.'] }, precaucoes: ['Não é corante alimentício.','Use luvas para evitar manchas.','Não é solúvel em água pura.','Armazene em local fresco e seco.','Guarde fora do alcance de crianças.'] }
     ]
   },
   'colorir-alimentos': {
     ctx: 'Colorir alimentos',
     tip: '<strong>Atenção:</strong> Utilize apenas corantes da linha alimentícia, aprovados pela ANVISA.',
     products: [
-      {
-        name: 'Corante Amarelo Tartrazina', icon: '🟡', color: '#E6A81722',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-tartrazina/',
-        desc: 'Aprovado pela ANVISA. Alta solubilidade em água. Ideal para confeitaria, massas e bebidas.',
-        visao: { resumo: 'Corante alimentício amarelo (INS 102), aprovado pela ANVISA. Altamente solúvel em água, estável em ampla faixa de pH e temperatura.', itens: ['Classificação: INS 102','Base: água','Aprovação: ANVISA','Estável até 100°C'] },
-        uso: { intro: 'Dissolva em água e incorpore ao alimento conforme a receita.', passos: ['Use entre 0,005% e 0,05% em relação ao peso total.','Dissolva em água antes de incorporar à massa ou calda.','Para confeitos: adicione à calda morna.','Para massas: dissolva na água do preparo.','Para bebidas: dissolva e misture diretamente.'] },
-        precaucoes: ['<strong>Atenção a alergias:</strong> pode causar reações em pessoas sensíveis a aspirina.','Use apenas a quantidade recomendada — excesso altera o sabor.','Não use em alimentos para bebês sem orientação médica.','Armazene em local seco, longe de luz e calor.','Verifique a legislação local sobre uso em produtos comerciais.']
-      },
-      {
-        name: 'Corante Vermelho Bordô', icon: '🔴', color: '#8B000022',
-        price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-vermelho-bordo/',
-        desc: 'Tom bordô profundo. Muito usado em bebidas, cremes e massas alimentícias.',
-        visao: { resumo: 'Corante alimentício de tom bordô profundo, solúvel em água. Aprovado para uso em alimentos.', itens: ['Base: água','Aprovação: ANVISA','Tom: vermelho-bordô','Solúvel em água quente ou fria'] },
-        uso: { intro: 'Dissolva em água e adicione ao alimento.', passos: ['Use 0,005% a 0,04% em relação ao peso total.','Dissolva em água morna para acelerar a dissolução.','Para massas: adicione à água do preparo.','Para bebidas: dissolva e misture.','Combine com Amarelo Tartrazina para tons de laranja-avermelhado.'] },
-        precaucoes: ['Use apenas em alimentos — não misturar com produtos não alimentícios.','Respeite as doses máximas recomendadas pela ANVISA.','Pode intensificar a cor ao aquecimento — teste antes.','Armazene em embalagem fechada, longe de umidade.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Verde Folha', icon: '🟢', color: '#228B2222',
-        price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-folha/',
-        desc: 'Verde natural vivo, aprovado para alimentos. Ótimo para confeitaria e massas.',
-        visao: { resumo: 'Corante alimentício verde, aprovado pela ANVISA. Tom verde vibrante e natural.', itens: ['Base: água','Aprovação: ANVISA','Tom: verde-natural','Boa estabilidade até 80°C'] },
-        uso: { intro: 'Dissolva em água antes de incorporar ao alimento.', passos: ['Dose: 0,005% a 0,05%.','Dissolva em pequena quantidade de água morna.','Adicione à massa, calda ou creme sob mistura constante.','Para fondant: adicione gota a gota até o tom desejado.','Para massas frescas: dissolva na água do preparo.'] },
-        precaucoes: ['Respeite as doses máximas permitidas pela ANVISA.','Pode perder intensidade em altas temperaturas (acima de 80°C).','Não use em alimentos para lactentes.','Armazene protegido da luz e umidade.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Corante Azul Brilhante', icon: '🔵', color: '#1E90FF22',
-        price: 'R$ 38,00', priceNum: 38.00, url: 'https://www.corincorantes.com.br/produtos/corante-azul-brilhante/',
-        desc: 'Azul intenso e estável, aprovado pela ANVISA. Usado em bebidas e coberturas.',
-        visao: { resumo: 'Corante alimentício azul (INS 133 / FD&C Blue 1), aprovado pela ANVISA. Um dos poucos corantes azuis permitidos para uso em alimentos no Brasil.', itens: ['Classificação: INS 133','Base: água','Aprovação: ANVISA','Estável em pH 3 a 8'] },
-        uso: { intro: 'Dissolva em água e incorpore ao alimento com cuidado — é muito concentrado.', passos: ['Use entre 0,003% e 0,02% — pequenas doses já colorem bastante.','Dissolva em água fria ou morna.','Para bebidas: adicione gota a gota até o tom desejado.','Para coberturas: misture à calda ainda líquida.','Combine com Amarelo Tartrazina para obter tons de verde.'] },
-        precaucoes: ['Respeite estritamente as doses da ANVISA.','Pode causar reações em indivíduos sensíveis a corantes artificiais.','Não recomendado para crianças com hiperatividade — consulte um médico.','Armazene em local fresco, seco e protegido da luz.','Mantenha fora do alcance de crianças.']
-      }
+      { name: 'Corante Amarelo Tartrazina', icon: '🟡', color: '#E6A81722', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-amarelo-tartrazina/', desc: 'Aprovado pela ANVISA. Alta solubilidade em água. Ideal para confeitaria, massas e bebidas.', visao: { resumo: 'Corante alimentício amarelo (INS 102), aprovado pela ANVISA. Altamente solúvel em água, estável em ampla faixa de pH e temperatura.', itens: ['Classificação: INS 102','Base: água','Aprovação: ANVISA','Estável até 100°C'] }, uso: { intro: 'Dissolva em água e incorpore ao alimento conforme a receita.', passos: ['Use entre 0,005% e 0,05% em relação ao peso total.','Dissolva em água antes de incorporar à massa ou calda.','Para confeitos: adicione à calda morna.','Para massas: dissolva na água do preparo.','Para bebidas: dissolva e misture diretamente.'] }, precaucoes: ['<strong>Atenção a alergias:</strong> pode causar reações em pessoas sensíveis a aspirina.','Use apenas a quantidade recomendada — excesso altera o sabor.','Não use em alimentos para bebês sem orientação médica.','Armazene em local seco, longe de luz e calor.','Verifique a legislação local sobre uso em produtos comerciais.'] },
+      { name: 'Corante Vermelho Bordô', icon: '🔴', color: '#8B000022', price: 'R$ 15,00', priceNum: 15.00, url: 'https://www.corincorantes.com.br/produtos/corante-vermelho-bordo/', desc: 'Tom bordô profundo. Muito usado em bebidas, cremes e massas alimentícias.', visao: { resumo: 'Corante alimentício de tom bordô profundo, solúvel em água. Aprovado para uso em alimentos.', itens: ['Base: água','Aprovação: ANVISA','Tom: vermelho-bordô','Solúvel em água quente ou fria'] }, uso: { intro: 'Dissolva em água e adicione ao alimento.', passos: ['Use 0,005% a 0,04% em relação ao peso total.','Dissolva em água morna para acelerar a dissolução.','Para massas: adicione à água do preparo.','Para bebidas: dissolva e misture.','Combine com Amarelo Tartrazina para tons de laranja-avermelhado.'] }, precaucoes: ['Use apenas em alimentos — não misturar com produtos não alimentícios.','Respeite as doses máximas recomendadas pela ANVISA.','Pode intensificar a cor ao aquecimento — teste antes.','Armazene em embalagem fechada, longe de umidade.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Corante Verde Folha', icon: '🟢', color: '#228B2222', price: 'R$ 20,00', priceNum: 20.00, url: 'https://www.corincorantes.com.br/produtos/corante-verde-folha/', desc: 'Verde natural vivo, aprovado para alimentos. Ótimo para confeitaria e massas.', visao: { resumo: 'Corante alimentício verde, aprovado pela ANVISA. Tom verde vibrante e natural.', itens: ['Base: água','Aprovação: ANVISA','Tom: verde-natural','Boa estabilidade até 80°C'] }, uso: { intro: 'Dissolva em água antes de incorporar ao alimento.', passos: ['Dose: 0,005% a 0,05%.','Dissolva em pequena quantidade de água morna.','Adicione à massa, calda ou creme sob mistura constante.','Para fondant: adicione gota a gota até o tom desejado.','Para massas frescas: dissolva na água do preparo.'] }, precaucoes: ['Respeite as doses máximas permitidas pela ANVISA.','Pode perder intensidade em altas temperaturas (acima de 80°C).','Não use em alimentos para lactentes.','Armazene protegido da luz e umidade.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Corante Azul Brilhante', icon: '🔵', color: '#1E90FF22', price: 'R$ 38,00', priceNum: 38.00, url: 'https://www.corincorantes.com.br/produtos/corante-azul-brilhante/', desc: 'Azul intenso e estável, aprovado pela ANVISA. Usado em bebidas e coberturas.', visao: { resumo: 'Corante alimentício azul (INS 133 / FD&C Blue 1), aprovado pela ANVISA. Um dos poucos corantes azuis permitidos para uso em alimentos no Brasil.', itens: ['Classificação: INS 133','Base: água','Aprovação: ANVISA','Estável em pH 3 a 8'] }, uso: { intro: 'Dissolva em água e incorpore ao alimento com cuidado — é muito concentrado.', passos: ['Use entre 0,003% e 0,02% — pequenas doses já colorem bastante.','Dissolva em água fria ou morna.','Para bebidas: adicione gota a gota até o tom desejado.','Para coberturas: misture à calda ainda líquida.','Combine com Amarelo Tartrazina para obter tons de verde.'] }, precaucoes: ['Respeite estritamente as doses da ANVISA.','Pode causar reações em indivíduos sensíveis a corantes artificiais.','Não recomendado para crianças com hiperatividade — consulte um médico.','Armazene em local fresco, seco e protegido da luz.','Mantenha fora do alcance de crianças.'] }
     ]
   },
   'brilho-efeito': {
     ctx: 'Efeito / brilho',
     tip: '<strong>Dica criativa:</strong> Combine Mica Prata com corantes base para criar efeitos perolados exclusivos.',
     products: [
-      {
-        name: 'Pigmento Purpurina Ouro Rico', icon: '✨', color: '#F5A62322',
-        price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-purpurina-ouro-rico/',
-        desc: 'Efeito dourado intenso e brilhante. Partículas finas que se distribuem uniformemente.',
-        visao: { resumo: 'Pigmento metálico dourado de partículas ultrafinas, para uso cosmético e artesanal. Produz efeito dourado intenso e brilhante.', itens: ['Tipo: pigmento metálico','Tom: ouro-rico','Partícula: fina, alta aderência','Uso: cosmético e artesanal'] },
-        uso: { intro: 'Adicione ao produto pronto ou incorpore na fase final da formulação.', passos: ['Para sabonetes: polvilhe sobre a superfície ou misture ao traço.','Para velas: polvilhe sobre a cera ainda quente antes de solidificar.','Para cosméticos: incorpore à formulação fria no final.','Use entre 0,5% e 3% em relação ao peso total.','Não dissolve — é uma dispersão de partículas.'] },
-        precaucoes: ['<strong>Não é comestível.</strong> Não utilize em alimentos.','Evite inalar o pó fino — use máscara em ambientes fechados.','Não é recomendado para uso próximo aos olhos sem aprovação cosmética.','Mantenha seco — a umidade pode aglomerar as partículas.','Guarde fora do alcance de crianças.']
-      },
-      {
-        name: 'Pigmento Diamond Blue', icon: '💎', color: '#1E90FF22',
-        price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-diamond-blue/',
-        desc: 'Azul diamante cintilante. Versátil para sabonetes, cosméticos e artesanato.',
-        visao: { resumo: 'Pigmento azul cintilante com efeito diamante, produzindo reflexos intensos e coloridos.', itens: ['Tipo: pigmento cintilante','Tom: azul-diamante','Efeito: reflexo multidirecional','Versatilidade: alta'] },
-        uso: { intro: 'Incorpore ao produto na fase final ou use para decoração.', passos: ['Use entre 0,5% e 2% do peso total.','Para sabonetes: adicione no traço ou na superfície.','Para velas decorativas: polvilhe antes da solidificação.','Para cosméticos: dispersar em óleo ou glicerina antes de incorporar.','Combine com Purpurina Ouro para efeito bicolor.'] },
-        precaucoes: ['Não comestível — uso externo apenas.','Evite inalação do pó. Use máscara se necessário.','Mantenha seco para evitar aglomeração.','Não usar diretamente nos olhos sem aprovação específica.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Pigmento Mica Prata', icon: '🩶', color: '#A9A9A922',
-        price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-mica-prata/',
-        desc: 'Efeito perolado e prateado sofisticado. Combina com qualquer corante base.',
-        visao: { resumo: 'Pigmento de mica natural revestida para efeito prateado e perolado. Extremamente versátil.', itens: ['Tipo: mica natural revestida','Tom: prateado-perolado','Compatibilidade: universal','Efeito: pérola/satinado'] },
-        uso: { intro: 'Combine com corantes para criar efeitos perolados exclusivos.', passos: ['Use entre 0,5% e 5% conforme a intensidade desejada.','Misture com corantes em pó antes de incorporar.','Para sabonetes: adicione no traço.','Para cremes: dispersar em óleo ou glicerina.','Quanto mais mica, mais intenso o efeito perolado.'] },
-        precaucoes: ['Não comestível.','Evite inalação em ambientes fechados.','Mantenha seco para preservar as propriedades.','Pode irritar levemente os olhos — evite contato direto.','Guarde fora do alcance de crianças.']
-      },
-      {
-        name: 'Pigmento Rosa Fluorescente', icon: '🩷', color: '#FF69B422',
-        price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-rosa-fluorescente/',
-        desc: 'Rosa neon vibrante e marcante. Brilha sob luz UV.',
-        visao: { resumo: 'Pigmento rosa fluorescente de alta intensidade, com efeito luminoso único sob luz UV.', itens: ['Tipo: pigmento fluorescente','Tom: rosa-neon','Efeito UV: sim','Uso: cosmético e artesanal'] },
-        uso: { intro: 'Use em baixas doses — o pigmento é altamente concentrado.', passos: ['Dose: 0,5% a 2% do peso total.','Para sabonetes: adicione no traço.','Para velas: polvilhe sobre a superfície aquecida.','Dispersar em óleo ou glicerina antes de incorporar em cosméticos.','Teste sob luz UV para verificar o efeito fluorescente.'] },
-        precaucoes: ['Não comestível — uso externo apenas.','Evite contato direto com os olhos.','Pode manchar superfícies e tecidos — use luvas.','Não usar em formulações para bebês ou pele sensível sem teste.','Guarde fora do alcance de crianças.']
-      }
+      { name: 'Pigmento Purpurina Ouro Rico', icon: '✨', color: '#F5A62322', price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-purpurina-ouro-rico/', desc: 'Efeito dourado intenso e brilhante. Partículas finas que se distribuem uniformemente.', visao: { resumo: 'Pigmento metálico dourado de partículas ultrafinas, para uso cosmético e artesanal. Produz efeito dourado intenso e brilhante.', itens: ['Tipo: pigmento metálico','Tom: ouro-rico','Partícula: fina, alta aderência','Uso: cosmético e artesanal'] }, uso: { intro: 'Adicione ao produto pronto ou incorpore na fase final da formulação.', passos: ['Para sabonetes: polvilhe sobre a superfície ou misture ao traço.','Para velas: polvilhe sobre a cera ainda quente antes de solidificar.','Para cosméticos: incorpore à formulação fria no final.','Use entre 0,5% e 3% em relação ao peso total.','Não dissolve — é uma dispersão de partículas.'] }, precaucoes: ['<strong>Não é comestível.</strong> Não utilize em alimentos.','Evite inalar o pó fino — use máscara em ambientes fechados.','Não é recomendado para uso próximo aos olhos sem aprovação cosmética.','Mantenha seco — a umidade pode aglomerar as partículas.','Guarde fora do alcance de crianças.'] },
+      { name: 'Pigmento Diamond Blue', icon: '💎', color: '#1E90FF22', price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-diamond-blue/', desc: 'Azul diamante cintilante. Versátil para sabonetes, cosméticos e artesanato.', visao: { resumo: 'Pigmento azul cintilante com efeito diamante, produzindo reflexos intensos e coloridos.', itens: ['Tipo: pigmento cintilante','Tom: azul-diamante','Efeito: reflexo multidirecional','Versatilidade: alta'] }, uso: { intro: 'Incorpore ao produto na fase final ou use para decoração.', passos: ['Use entre 0,5% e 2% do peso total.','Para sabonetes: adicione no traço ou na superfície.','Para velas decorativas: polvilhe antes da solidificação.','Para cosméticos: dispersar em óleo ou glicerina antes de incorporar.','Combine com Purpurina Ouro para efeito bicolor.'] }, precaucoes: ['Não comestível — uso externo apenas.','Evite inalação do pó. Use máscara se necessário.','Mantenha seco para evitar aglomeração.','Não usar diretamente nos olhos sem aprovação específica.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Pigmento Mica Prata', icon: '🩶', color: '#A9A9A922', price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-mica-prata/', desc: 'Efeito perolado e prateado sofisticado. Combina com qualquer corante base.', visao: { resumo: 'Pigmento de mica natural revestida para efeito prateado e perolado. Extremamente versátil.', itens: ['Tipo: mica natural revestida','Tom: prateado-perolado','Compatibilidade: universal','Efeito: pérola/satinado'] }, uso: { intro: 'Combine com corantes para criar efeitos perolados exclusivos.', passos: ['Use entre 0,5% e 5% conforme a intensidade desejada.','Misture com corantes em pó antes de incorporar.','Para sabonetes: adicione no traço.','Para cremes: dispersar em óleo ou glicerina.','Quanto mais mica, mais intenso o efeito perolado.'] }, precaucoes: ['Não comestível.','Evite inalação em ambientes fechados.','Mantenha seco para preservar as propriedades.','Pode irritar levemente os olhos — evite contato direto.','Guarde fora do alcance de crianças.'] },
+      { name: 'Pigmento Rosa Fluorescente', icon: '🩷', color: '#FF69B422', price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/pigmento-rosa-fluorescente/', desc: 'Rosa neon vibrante e marcante. Brilha sob luz UV.', visao: { resumo: 'Pigmento rosa fluorescente de alta intensidade, com efeito luminoso único sob luz UV.', itens: ['Tipo: pigmento fluorescente','Tom: rosa-neon','Efeito UV: sim','Uso: cosmético e artesanal'] }, uso: { intro: 'Use em baixas doses — o pigmento é altamente concentrado.', passos: ['Dose: 0,5% a 2% do peso total.','Para sabonetes: adicione no traço.','Para velas: polvilhe sobre a superfície aquecida.','Dispersar em óleo ou glicerina antes de incorporar em cosméticos.','Teste sob luz UV para verificar o efeito fluorescente.'] }, precaucoes: ['Não comestível — uso externo apenas.','Evite contato direto com os olhos.','Pode manchar superfícies e tecidos — use luvas.','Não usar em formulações para bebês ou pele sensível sem teste.','Guarde fora do alcance de crianças.'] }
     ]
   },
   'perfumar': {
     ctx: 'Perfumar produtos',
     tip: '<strong>Dica de uso:</strong> Use entre 1% e 3% do peso da formulação. Para home sprays pode chegar a 5%.',
     products: [
-      {
-        name: 'Essência Daslu Vanilla', icon: '🍮', color: '#F5A62322',
-        price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-daslu-vanilla/',
-        desc: 'Fragrância sofisticada e envolvente. Ideal para sabonetes, cremes, velas e home spray.',
-        visao: { resumo: 'Essência aromática inspirada na fragrância Daslu, com notas de baunilha cremosa e almíscar.', itens: ['Família olfativa: oriental/gourmand','Nota principal: baunilha','Fixação: alta','Compatível com: álcool, água, cera, óleos'] },
-        uso: { intro: 'Adicione à formulação no ponto de temperatura adequado para preservar o aroma.', passos: ['Use entre 1% e 3% em sabonetes e cremes.','Para home spray: use 3% a 5% em álcool 70%.','Para velas: adicione à cera entre 55–65°C, abaixo do ponto de fulgor.','Em cremes: adicione na fase fria (abaixo de 40°C).','Misture bem para distribuição uniforme do aroma.'] },
-        precaucoes: ['Não ingerir. Uso externo e ambiental apenas.','Pode causar sensibilização em peles muito sensíveis — faça teste.','Inflamável: mantenha longe de chamas abertas.','Armazene em local fresco, longe da luz solar direta.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Essência Chá Branco', icon: '🍵', color: '#E8F5E922',
-        price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-cha-branco/',
-        desc: 'Aroma fresco e delicado de chá branco. Muito versátil.',
-        visao: { resumo: 'Essência de chá branco com notas verdes suaves, florais e levemente amadeiradas.', itens: ['Família olfativa: verde/floral','Nota principal: chá branco','Fixação: média-alta','Sensação: fresco e clean'] },
-        uso: { intro: 'Adicione em temperatura adequada conforme o tipo de produto.', passos: ['Sabonetes e cremes: 1% a 2,5%.','Home spray: 3% a 5% em álcool.','Velas: adicione à cera entre 55–65°C.','Difusor de ambiente: use puro ou diluído em DPG.','Misture bem antes de testar o aroma final.'] },
-        precaucoes: ['Não ingerir.','Produto inflamável — armazene longe de fontes de calor.','Evite contato direto com a pele pura — sempre diluído na formulação.','Em caso de contato com os olhos, lave com água.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Essência Capim Limão', icon: '🌿', color: '#F9FBE722',
-        price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-capim-limao/',
-        desc: 'Fresco, cítrico e revigorante. Ótimo para sabonetes e ambientes.',
-        visao: { resumo: 'Essência de capim-limão (lemongrass) com notas cítricas frescas e herbáceas.', itens: ['Família olfativa: cítrico/herbal','Nota principal: limão/erva','Fixação: média','Efeito: energizante'] },
-        uso: { intro: 'Adicione na fase fria ou à temperatura indicada para cada base.', passos: ['Sabonetes: 1,5% a 3%.','Home spray: 4% a 6% em álcool 70%.','Cremes: adicione abaixo de 40°C.','Velas: adicione entre 55–60°C.','Combine com Chá Branco para um aroma fresco mais complexo.'] },
-        precaucoes: ['Não ingerir.','Pode ser fototóxico em concentrações altas — evite aplicar na pele antes de exposição solar.','Produto inflamável.','Armazene em local fresco e protegido da luz.','Mantenha fora do alcance de crianças.']
-      },
-      {
-        name: 'Essência Ritual', icon: '🕯️', color: '#FFF3E022',
-        price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/essencia-trousseau/',
-        desc: 'Fragrância exclusiva e sofisticada. Perfeita para velas e home spray.',
-        visao: { resumo: 'Essência premium da linha Ritual, com composição aromática complexa e sofisticada.', itens: ['Família olfativa: amadeirado/floral','Fixação: muito alta','Posicionamento: premium','Ideal para: velas e home spray'] },
-        uso: { intro: 'Use nas proporções indicadas — a fixação alta permite doses menores.', passos: ['Velas: 2% a 4% à cera entre 55–65°C.','Home spray: 3% a 5% em álcool 70%.','Sabonetes: 1% a 2%.','Difusor: diluir em DPG na proporção 1:3.','Devido à alta fixação, começe com doses menores e ajuste.'] },
-        precaucoes: ['Não ingerir.','Inflamável — mantenha longe de chamas abertas.','Armazene em embalagem original, em local fresco e escuro.','Pode causar sensibilização — teste em pele antes de lançar o produto.','Mantenha fora do alcance de crianças.']
-      }
+      { name: 'Essência Daslu Vanilla', icon: '🍮', color: '#F5A62322', price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-daslu-vanilla/', desc: 'Fragrância sofisticada e envolvente. Ideal para sabonetes, cremes, velas e home spray.', visao: { resumo: 'Essência aromática inspirada na fragrância Daslu, com notas de baunilha cremosa e almíscar.', itens: ['Família olfativa: oriental/gourmand','Nota principal: baunilha','Fixação: alta','Compatível com: álcool, água, cera, óleos'] }, uso: { intro: 'Adicione à formulação no ponto de temperatura adequado para preservar o aroma.', passos: ['Use entre 1% e 3% em sabonetes e cremes.','Para home spray: use 3% a 5% em álcool 70%.','Para velas: adicione à cera entre 55–65°C, abaixo do ponto de fulgor.','Em cremes: adicione na fase fria (abaixo de 40°C).','Misture bem para distribuição uniforme do aroma.'] }, precaucoes: ['Não ingerir. Uso externo e ambiental apenas.','Pode causar sensibilização em peles muito sensíveis — faça teste.','Inflamável: mantenha longe de chamas abertas.','Armazene em local fresco, longe da luz solar direta.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Essência Chá Branco', icon: '🍵', color: '#E8F5E922', price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-cha-branco/', desc: 'Aroma fresco e delicado de chá branco. Muito versátil.', visao: { resumo: 'Essência de chá branco com notas verdes suaves, florais e levemente amadeiradas.', itens: ['Família olfativa: verde/floral','Nota principal: chá branco','Fixação: média-alta','Sensação: fresco e clean'] }, uso: { intro: 'Adicione em temperatura adequada conforme o tipo de produto.', passos: ['Sabonetes e cremes: 1% a 2,5%.','Home spray: 3% a 5% em álcool.','Velas: adicione à cera entre 55–65°C.','Difusor de ambiente: use puro ou diluído em DPG.','Misture bem antes de testar o aroma final.'] }, precaucoes: ['Não ingerir.','Produto inflamável — armazene longe de fontes de calor.','Evite contato direto com a pele pura — sempre diluído na formulação.','Em caso de contato com os olhos, lave com água.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Essência Capim Limão', icon: '🌿', color: '#F9FBE722', price: 'R$ 25,00', priceNum: 25.00, url: 'https://www.corincorantes.com.br/produtos/essencia-capim-limao/', desc: 'Fresco, cítrico e revigorante. Ótimo para sabonetes e ambientes.', visao: { resumo: 'Essência de capim-limão (lemongrass) com notas cítricas frescas e herbáceas.', itens: ['Família olfativa: cítrico/herbal','Nota principal: limão/erva','Fixação: média','Efeito: energizante'] }, uso: { intro: 'Adicione na fase fria ou à temperatura indicada para cada base.', passos: ['Sabonetes: 1,5% a 3%.','Home spray: 4% a 6% em álcool 70%.','Cremes: adicione abaixo de 40°C.','Velas: adicione entre 55–60°C.','Combine com Chá Branco para um aroma fresco mais complexo.'] }, precaucoes: ['Não ingerir.','Pode ser fototóxico em concentrações altas — evite aplicar na pele antes de exposição solar.','Produto inflamável.','Armazene em local fresco e protegido da luz.','Mantenha fora do alcance de crianças.'] },
+      { name: 'Essência Ritual', icon: '🕯️', color: '#FFF3E022', price: 'R$ 35,00', priceNum: 35.00, url: 'https://www.corincorantes.com.br/produtos/essencia-trousseau/', desc: 'Fragrância exclusiva e sofisticada. Perfeita para velas e home spray.', visao: { resumo: 'Essência premium da linha Ritual, com composição aromática complexa e sofisticada.', itens: ['Família olfativa: amadeirado/floral','Fixação: muito alta','Posicionamento: premium','Ideal para: velas e home spray'] }, uso: { intro: 'Use nas proporções indicadas — a fixação alta permite doses menores.', passos: ['Velas: 2% a 4% à cera entre 55–65°C.','Home spray: 3% a 5% em álcool 70%.','Sabonetes: 1% a 2%.','Difusor: diluir em DPG na proporção 1:3.','Devido à alta fixação, começe com doses menores e ajuste.'] }, precaucoes: ['Não ingerir.','Inflamável — mantenha longe de chamas abertas.','Armazene em embalagem original, em local fresco e escuro.','Pode causar sensibilização — teste em pele antes de lançar o produto.','Mantenha fora do alcance de crianças.'] }
     ]
   },
   'presentear': {
     ctx: 'Kits para presente',
     tip: '<strong>Ideal para:</strong> Datas comemorativas, lembranças corporativas e cestas de presente.',
     products: [
-      {
-        name: 'Coleção Frut — Kit 7 Sabonetes', icon: '🍓', color: '#E84B8A22',
-        price: 'R$ 69,90', priceNum: 69.90, url: 'https://www.corincorantes.com.br/produtos/colecao-frut-kit-com-7-sabonetes-de-frutas/',
-        desc: 'Kit completo com 7 sabonetes artesanais de frutas. Embalagem presenteável.',
-        visao: { resumo: 'Kit com 7 sabonetes artesanais temáticos de frutas, cada um com aroma e cor exclusivos. Embalagem presenteável, perfeita para datas comemorativas.', itens: ['Quantidade: 7 sabonetes','Peso médio: 90g cada','Embalagem: caixa presente','Aromas: frutas variadas'] },
-        uso: { intro: 'Produtos prontos para presente — basta presentear!', passos: ['Use os sabonetes diretamente no banho.','Massageie com movimentos circulares e enxágue bem.','Indicado para uso corporal e mãos.','Armazene em local seco entre usos para prolongar a vida útil.','Pode ser usado como decoração de banheiro.'] },
-        precaucoes: ['Uso externo apenas.','Evite contato com os olhos.','Em caso de irritação, interrompa o uso.','Não é indicado para crianças menores de 3 anos sem supervisão.','Mantenha em local seco para evitar que o sabonete amoleça.']
-      },
-      {
-        name: 'KIT 10 Sabonetes Açafrão', icon: '🧡', color: '#FFF3E022',
-        price: 'R$ 89,90', priceNum: 89.90, url: 'https://www.corincorantes.com.br/produtos/kit-10-sabonete-artesanal-de-acafrao-150gr-clareador-antioxidante-e-combate-acne-y84o6/',
-        desc: 'Dez sabonetes clareadores, antioxidantes e que combatem a acne. 150g cada.',
-        visao: { resumo: 'Kit com 10 sabonetes artesanais de açafrão de 150g cada. Formulados com propriedades clareadora, antioxidante e de controle de acne.', itens: ['Quantidade: 10 sabonetes','Peso: 150g cada','Ativo principal: açafrão','Benefícios: clareador, antioxidante, anti-acne'] },
-        uso: { intro: 'Use diariamente para melhores resultados.', passos: ['Molhe o rosto ou área desejada com água morna.','Faça espuma com o sabonete e aplique com movimentos suaves.','Deixe agir por 1–2 minutos antes de enxaguar.','Use de manhã e à noite para resultados mais rápidos.','Hidrate após o uso, pois o açafrão pode ressecar em peles muito secas.'] },
-        precaucoes: ['Uso externo apenas — não ingerir.','Evite contato com os olhos.','Em caso de irritação ou vermelhidão, interrompa o uso.','Pode clarear a pele com o uso contínuo — proteja-se do sol (use protetor solar).','Não recomendado para gestantes sem orientação médica.']
-      },
-      {
-        name: 'Coleção Doçura', icon: '🎁', color: '#FCE4EC22',
-        price: 'Variado', priceNum: null, url: 'https://www.corincorantes.com.br/colecao-docura/',
-        desc: 'Linha de produtos artesanais com aromas adocicados. Monte o presente perfeito.',
-        visao: { resumo: 'Linha Doçura da Corin Corantes, com produtos artesanais de aromas doces e aconchegantes. Sabonetes, cremes e acessórios com embalagens elegantes.', itens: ['Linha completa: sabonetes, cremes e acessórios','Aromas: doces e aconchegantes','Embalagem: presenteável','Personalização: monte seu kit'] },
-        uso: { intro: 'Monte o kit conforme a ocasião e o perfil do presenteado.', passos: ['Escolha os produtos da linha que mais combinem com o estilo do presenteado.','Os sabonetes podem ser usados no banho diariamente.','Os cremes aplicar em pele limpa e seca.','Combine aromas complementares para uma experiência sensorial completa.','Embale com papel crepom e laço para um acabamento especial.'] },
-        precaucoes: ['Verifique os ingredientes de cada produto da linha para possíveis alergias.','Produtos para uso externo apenas.','Armazene em local fresco e seco.','Consulte a embalagem de cada produto para instruções específicas.','Verifique a validade antes de presentear.']
-      },
-      {
-        name: 'Linha Ritual', icon: '🌸', color: '#E8EAF622',
-        price: 'Variado', priceNum: null, url: 'https://www.corincorantes.com.br/trousseau/',
-        desc: 'Produtos premium de cuidado pessoal. Embalagem elegante e fragrâncias exclusivas.',
-        visao: { resumo: 'A Linha Ritual representa o segmento premium da Corin Corantes. Produtos com fragrâncias exclusivas, formulações caprichadas e embalagens sofisticadas.', itens: ['Posicionamento: premium','Fragrâncias: exclusivas','Embalagem: sofisticada','Ideal para: presentes corporativos'] },
-        uso: { intro: 'Cada produto da linha possui sua forma de uso específica.', passos: ['Consulte as instruções de uso de cada produto individualmente.','Para sabonetes: use no banho com movimentos suaves.','Para home sprays: borrife no ambiente a 30cm de distância.','Para cremes: aplique em pele limpa com movimentos circulares.','Use como presente pronto ou combine com outros itens da linha.'] },
-        precaucoes: ['Produtos para uso externo e ambiental.','Verifique os ingredientes para possíveis alergias.','Mantenha fora do alcance de crianças.','Armazene conforme indicado em cada produto.','Consulte o rótulo de cada item para informações completas.']
-      }
+      { name: 'Coleção Frut — Kit 7 Sabonetes', icon: '🍓', color: '#E84B8A22', price: 'R$ 69,90', priceNum: 69.90, url: 'https://www.corincorantes.com.br/produtos/colecao-frut-kit-com-7-sabonetes-de-frutas/', desc: 'Kit completo com 7 sabonetes artesanais de frutas. Embalagem presenteável.', visao: { resumo: 'Kit com 7 sabonetes artesanais temáticos de frutas, cada um com aroma e cor exclusivos. Embalagem presenteável, perfeita para datas comemorativas.', itens: ['Quantidade: 7 sabonetes','Peso médio: 90g cada','Embalagem: caixa presente','Aromas: frutas variadas'] }, uso: { intro: 'Produtos prontos para presente — basta presentear!', passos: ['Use os sabonetes diretamente no banho.','Massageie com movimentos circulares e enxágue bem.','Indicado para uso corporal e mãos.','Armazene em local seco entre usos para prolongar a vida útil.','Pode ser usado como decoração de banheiro.'] }, precaucoes: ['Uso externo apenas.','Evite contato com os olhos.','Em caso de irritação, interrompa o uso.','Não é indicado para crianças menores de 3 anos sem supervisão.','Mantenha em local seco para evitar que o sabonete amoleça.'] },
+      { name: 'KIT 10 Sabonetes Açafrão', icon: '🧡', color: '#FFF3E022', price: 'R$ 89,90', priceNum: 89.90, url: 'https://www.corincorantes.com.br/produtos/kit-10-sabonete-artesanal-de-acafrao-150gr-clareador-antioxidante-e-combate-acne-y84o6/', desc: 'Dez sabonetes clareadores, antioxidantes e que combatem a acne. 150g cada.', visao: { resumo: 'Kit com 10 sabonetes artesanais de açafrão de 150g cada. Formulados com propriedades clareadora, antioxidante e de controle de acne.', itens: ['Quantidade: 10 sabonetes','Peso: 150g cada','Ativo principal: açafrão','Benefícios: clareador, antioxidante, anti-acne'] }, uso: { intro: 'Use diariamente para melhores resultados.', passos: ['Molhe o rosto ou área desejada com água morna.','Faça espuma com o sabonete e aplique com movimentos suaves.','Deixe agir por 1–2 minutos antes de enxaguar.','Use de manhã e à noite para resultados mais rápidos.','Hidrate após o uso, pois o açafrão pode ressecar em peles muito secas.'] }, precaucoes: ['Uso externo apenas — não ingerir.','Evite contato com os olhos.','Em caso de irritação ou vermelhidão, interrompa o uso.','Pode clarear a pele com o uso contínuo — proteja-se do sol (use protetor solar).','Não recomendado para gestantes sem orientação médica.'] },
+      { name: 'Coleção Doçura', icon: '🎁', color: '#FCE4EC22', price: 'Variado', priceNum: null, url: 'https://www.corincorantes.com.br/colecao-docura/', desc: 'Linha de produtos artesanais com aromas adocicados. Monte o presente perfeito.', visao: { resumo: 'Linha Doçura da Corin Corantes, com produtos artesanais de aromas doces e aconchegantes. Sabonetes, cremes e acessórios com embalagens elegantes.', itens: ['Linha completa: sabonetes, cremes e acessórios','Aromas: doces e aconchegantes','Embalagem: presenteável','Personalização: monte seu kit'] }, uso: { intro: 'Monte o kit conforme a ocasião e o perfil do presenteado.', passos: ['Escolha os produtos da linha que mais combinem com o estilo do presenteado.','Os sabonetes podem ser usados no banho diariamente.','Os cremes aplicar em pele limpa e seca.','Combine aromas complementares para uma experiência sensorial completa.','Embale com papel crepom e laço para um acabamento especial.'] }, precaucoes: ['Verifique os ingredientes de cada produto da linha para possíveis alergias.','Produtos para uso externo apenas.','Armazene em local fresco e seco.','Consulte a embalagem de cada produto para instruções específicas.','Verifique a validade antes de presentear.'] },
+      { name: 'Linha Ritual', icon: '🌸', color: '#E8EAF622', price: 'Variado', priceNum: null, url: 'https://www.corincorantes.com.br/trousseau/', desc: 'Produtos premium de cuidado pessoal. Embalagem elegante e fragrâncias exclusivas.', visao: { resumo: 'A Linha Ritual representa o segmento premium da Corin Corantes. Produtos com fragrâncias exclusivas, formulações caprichadas e embalagens sofisticadas.', itens: ['Posicionamento: premium','Fragrâncias: exclusivas','Embalagem: sofisticada','Ideal para: presentes corporativos'] }, uso: { intro: 'Cada produto da linha possui sua forma de uso específica.', passos: ['Consulte as instruções de uso de cada produto individualmente.','Para sabonetes: use no banho com movimentos suaves.','Para home sprays: borrife no ambiente a 30cm de distância.','Para cremes: aplique em pele limpa com movimentos circulares.','Use como presente pronto ou combine com outros itens da linha.'] }, precaucoes: ['Produtos para uso externo e ambiental.','Verifique os ingredientes para possíveis alergias.','Mantenha fora do alcance de crianças.','Armazene conforme indicado em cada produto.','Consulte o rótulo de cada item para informações completas.'] }
     ]
   },
   'limpeza': {
     ctx: 'Cuidar do lar',
     tip: '<strong>Dica:</strong> Adquira nossas Essências e misture ao Álcool Perfumado Base para criar seu aroma exclusivo!',
     products: [
-      {
-        name: 'Home Spray 1L — Daslu Vanilla', icon: '💨', color: '#F5A62322',
-        price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/home-spray-1-litro-daslu-vanilla/',
-        desc: 'Aromatizador premium com fragrância refinada e longa duração.',
-        visao: { resumo: 'Aromatizador de ambientes premium com fragrância inspirada em Daslu Vanilla. Fórmula de longa duração, ideal para sala, quarto e escritório.', itens: ['Volume: 1 litro','Fixação: longa duração','Uso: ambientes internos','Frasco: borrifador incluso'] },
-        uso: { intro: 'Borrifar no ambiente a uma distância segura.', passos: ['Agite levemente o frasco antes de usar.','Borrife a 30–40cm de distância de tecidos e superfícies.','Aplique em cortinas, sofás e roupas de cama para maior fixação.','Evite borrife diretamente sobre madeiras envernizadas ou couro.','Reaaplique conforme necessário para manter o aroma.'] },
-        precaucoes: ['Não ingerir.','Evite contato direto com olhos — em caso de contato, lave com água.','Não borrife próximo a chamas abertas durante a aplicação.','Mantenha fora do alcance de crianças.','Armazene em local fresco, longe da luz solar direta.']
-      },
-      {
-        name: 'Home Spray Chá Branco 1L', icon: '🫧', color: '#E3F2FD22',
-        price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/home-spray-1l-cha-branco/',
-        desc: 'Aroma fresco e delicado de chá branco. Ideal para ambientes de trabalho.',
-        visao: { resumo: 'Aromatizador de ambientes com fragrância de chá branco — fresco, delicado e sofisticado.', itens: ['Volume: 1 litro','Aroma: chá branco','Fixação: média-alta','Ideal para: escritórios e salas'] },
-        uso: { intro: 'Use da mesma forma que qualquer home spray — borrife e aproveite.', passos: ['Agite antes de usar.','Borrife a 30cm de distância.','Aplique em ambientes com boa circulação de ar.','Para maior durabilidade, aplique em tecidos.','Reaaplique 2 a 3 vezes ao dia conforme preferência.'] },
-        precaucoes: ['Não ingerir.','Evite contato com olhos e mucosas.','Não aplicar em chamas ou fontes de calor.','Mantenha fora do alcance de crianças.','Armazene em temperatura ambiente, protegido do sol.']
-      },
-      {
-        name: 'Álcool Perfumado 1L Chá Branco', icon: '🧴', color: '#E1F5FE22',
-        price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/alcool-perfumado-1-litro-cha-branco/',
-        desc: 'Limpa, desinfeta e perfuma ao mesmo tempo. Ótimo custo-benefício.',
-        visao: { resumo: 'Álcool etílico perfumado com fragrância de chá branco. Combina a ação desinfetante do álcool com o aroma delicado do chá branco.', itens: ['Composição: álcool etílico + fragrância','Volume: 1 litro','Função: limpeza + perfume','Concentração: 70 INPM'] },
-        uso: { intro: 'Versátil: use para limpar, desinfetar e perfumar.', passos: ['Para desinfetar superfícies: aplique com pano ou borrife e deixe agir 30s.','Como home spray: borrife no ambiente.','Para higienizar mãos: aplique e esfregue por 20 segundos.','Pode ser usado para limpar eletrodomésticos e eletrônicos (com cuidado).','Para perfumar roupas de cama: borrife levemente a 40cm.'] },
-        precaucoes: ['<strong>Inflamável.</strong> Mantenha longe de chamas e fontes de calor.','Não ingerir.','Evite contato com olhos — em caso de contato, lave com água abundante.','Uso excessivo nas mãos pode ressecar a pele — hidrate após o uso.','Armazene em local ventilado, fresco e fora do alcance de crianças.']
-      },
-      {
-        name: 'Refil Aromatizador Daslu Vanilla', icon: '🔄', color: '#FFF8E122',
-        price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/refil-de-aromatizador-1-litro-daslu-vanilla/',
-        desc: 'Refil econômico de 1 litro para aromatizador Daslu Vanilla.',
-        visao: { resumo: 'Refil de 1 litro para repor o aromatizador Daslu Vanilla. Econômico e sustentável, evita o descarte do frasco.', itens: ['Volume: 1 litro','Aroma: Daslu Vanilla','Compatível com: frasco Home Spray Daslu','Sustentabilidade: reduz descarte'] },
-        uso: { intro: 'Transfira para o frasco borrifador do Home Spray Daslu Vanilla.', passos: ['Certifique-se de que o frasco borrifador está vazio e limpo.','Transfira o refil com cuidado para evitar derramamentos.','Reacondicione com o borrifador e pronto.','Use normalmente como home spray, borrifando a 30cm.','Armazene o refil em local fresco e protegido da luz.'] },
-        precaucoes: ['Não ingerir.','Transfira em superfície estável para evitar derramamento.','Mantenha fora do alcance de crianças.','Evite contato com olhos.','Armazene em local fresco e longe de fontes de calor e luz solar.']
-      }
+      { name: 'Home Spray 1L — Daslu Vanilla', icon: '💨', color: '#F5A62322', price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/home-spray-1-litro-daslu-vanilla/', desc: 'Aromatizador premium com fragrância refinada e longa duração.', visao: { resumo: 'Aromatizador de ambientes premium com fragrância inspirada em Daslu Vanilla. Fórmula de longa duração, ideal para sala, quarto e escritório.', itens: ['Volume: 1 litro','Fixação: longa duração','Uso: ambientes internos','Frasco: borrifador incluso'] }, uso: { intro: 'Borrifar no ambiente a uma distância segura.', passos: ['Agite levemente o frasco antes de usar.','Borrife a 30–40cm de distância de tecidos e superfícies.','Aplique em cortinas, sofás e roupas de cama para maior fixação.','Evite borrife diretamente sobre madeiras envernizadas ou couro.','Reaaplique conforme necessário para manter o aroma.'] }, precaucoes: ['Não ingerir.','Evite contato direto com olhos — em caso de contato, lave com água.','Não borrife próximo a chamas abertas durante a aplicação.','Mantenha fora do alcance de crianças.','Armazene em local fresco, longe da luz solar direta.'] },
+      { name: 'Home Spray Chá Branco 1L', icon: '🫧', color: '#E3F2FD22', price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/home-spray-1l-cha-branco/', desc: 'Aroma fresco e delicado de chá branco. Ideal para ambientes de trabalho.', visao: { resumo: 'Aromatizador de ambientes com fragrância de chá branco — fresco, delicado e sofisticado.', itens: ['Volume: 1 litro','Aroma: chá branco','Fixação: média-alta','Ideal para: escritórios e salas'] }, uso: { intro: 'Use da mesma forma que qualquer home spray — borrife e aproveite.', passos: ['Agite antes de usar.','Borrife a 30cm de distância.','Aplique em ambientes com boa circulação de ar.','Para maior durabilidade, aplique em tecidos.','Reaaplique 2 a 3 vezes ao dia conforme preferência.'] }, precaucoes: ['Não ingerir.','Evite contato com olhos e mucosas.','Não aplicar em chamas ou fontes de calor.','Mantenha fora do alcance de crianças.','Armazene em temperatura ambiente, protegido do sol.'] },
+      { name: 'Álcool Perfumado 1L Chá Branco', icon: '🧴', color: '#E1F5FE22', price: 'R$ 30,00', priceNum: 30.00, url: 'https://www.corincorantes.com.br/produtos/alcool-perfumado-1-litro-cha-branco/', desc: 'Limpa, desinfeta e perfuma ao mesmo tempo. Ótimo custo-benefício.', visao: { resumo: 'Álcool etílico perfumado com fragrância de chá branco. Combina a ação desinfetante do álcool com o aroma delicado do chá branco.', itens: ['Composição: álcool etílico + fragrância','Volume: 1 litro','Função: limpeza + perfume','Concentração: 70 INPM'] }, uso: { intro: 'Versátil: use para limpar, desinfetar e perfumar.', passos: ['Para desinfetar superfícies: aplique com pano ou borrife e deixe agir 30s.','Como home spray: borrife no ambiente.','Para higienizar mãos: aplique e esfregue por 20 segundos.','Pode ser usado para limpar eletrodomésticos e eletrônicos (com cuidado).','Para perfumar roupas de cama: borrife levemente a 40cm.'] }, precaucoes: ['<strong>Inflamável.</strong> Mantenha longe de chamas e fontes de calor.','Não ingerir.','Evite contato com olhos — em caso de contato, lave com água abundante.','Uso excessivo nas mãos pode ressecar a pele — hidrate após o uso.','Armazene em local ventilado, fresco e fora do alcance de crianças.'] },
+      { name: 'Refil Aromatizador Daslu Vanilla', icon: '🔄', color: '#FFF8E122', price: 'R$ 49,90', priceNum: 49.90, url: 'https://www.corincorantes.com.br/produtos/refil-de-aromatizador-1-litro-daslu-vanilla/', desc: 'Refil econômico de 1 litro para aromatizador Daslu Vanilla.', visao: { resumo: 'Refil de 1 litro para repor o aromatizador Daslu Vanilla. Econômico e sustentável, evita o descarte do frasco.', itens: ['Volume: 1 litro','Aroma: Daslu Vanilla','Compatível com: frasco Home Spray Daslu','Sustentabilidade: reduz descarte'] }, uso: { intro: 'Transfira para o frasco borrifador do Home Spray Daslu Vanilla.', passos: ['Certifique-se de que o frasco borrifador está vazio e limpo.','Transfira o refil com cuidado para evitar derramamentos.','Reacondicione com o borrifador e pronto.','Use normalmente como home spray, borrifando a 30cm.','Armazene o refil em local fresco e protegido da luz.'] }, precaucoes: ['Não ingerir.','Transfira em superfície estável para evitar derramamento.','Mantenha fora do alcance de crianças.','Evite contato com olhos.','Armazene em local fresco e longe de fontes de calor e luz solar.'] }
     ]
   }
 };
 
-/* ══════════════════════════════════════
-   STATE
-══════════════════════════════════════ */
 let selected = null;
 let allProducts = [];
 let currentModalIdx = null;
 let modalQty = 1;
-let cart = []; // [{id, name, icon, color, price, priceNum, url, qty}]
+let cart = [];
 
-/* ══════════════════════════════════════
-   NAVIGATION
-══════════════════════════════════════ */
 function selectOption(el, val) {
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
@@ -1231,22 +973,17 @@ function goBack() {
   document.getElementById('screen-home').classList.add('active');
 }
 
-/* ══════════════════════════════════════
-   MODAL
-══════════════════════════════════════ */
 function openModal(idx) {
   const p = allProducts[idx];
   if (!p) return;
   currentModalIdx = idx;
   modalQty = 1;
   document.getElementById('modal-qty').textContent = 1;
-
   document.getElementById('modal-icon').textContent = p.icon;
   document.getElementById('modal-name').textContent = p.name;
   document.getElementById('modal-price').textContent = p.price;
   document.getElementById('modal-buy-link').href = p.url;
 
-  // Update add button state
   const addBtn = document.getElementById('modal-add-btn');
   const isInCart = cart.some(c => c.id === selected + '-' + idx);
   if (isInCart) {
@@ -1258,30 +995,15 @@ function openModal(idx) {
   }
 
   document.getElementById('tab-visao').innerHTML = `
-    <div class="spec-section">
-      <div class="spec-section-title">Sobre o produto</div>
-      <p>${p.visao.resumo}</p>
-    </div>
-    <div class="spec-section">
-      <div class="spec-section-title">Informações técnicas</div>
-      <ul class="spec-list">${p.visao.itens.map(i => `<li>${i}</li>`).join('')}</ul>
-    </div>
+    <div class="spec-section"><div class="spec-section-title">Sobre o produto</div><p>${p.visao.resumo}</p></div>
+    <div class="spec-section"><div class="spec-section-title">Informações técnicas</div><ul class="spec-list">${p.visao.itens.map(i=>`<li>${i}</li>`).join('')}</ul></div>
   `;
   document.getElementById('tab-uso').innerHTML = `
-    <div class="spec-section">
-      <div class="spec-section-title">Orientação geral</div>
-      <p>${p.uso.intro}</p>
-    </div>
-    <div class="spec-section">
-      <div class="spec-section-title">Passo a passo</div>
-      <ul class="spec-list">${p.uso.passos.map(i => `<li>${i}</li>`).join('')}</ul>
-    </div>
+    <div class="spec-section"><div class="spec-section-title">Orientação geral</div><p>${p.uso.intro}</p></div>
+    <div class="spec-section"><div class="spec-section-title">Passo a passo</div><ul class="spec-list">${p.uso.passos.map(i=>`<li>${i}</li>`).join('')}</ul></div>
   `;
   document.getElementById('tab-precaucoes').innerHTML = `
-    <div class="spec-section">
-      <div class="spec-section-title">Atenção e cuidados</div>
-      <ul class="warn-list">${p.precaucoes.map(i => `<li>${i}</li>`).join('')}</ul>
-    </div>
+    <div class="spec-section"><div class="spec-section-title">Atenção e cuidados</div><ul class="warn-list">${p.precaucoes.map(i=>`<li>${i}</li>`).join('')}</ul></div>
   `;
 
   switchTab('visao');
@@ -1302,24 +1024,15 @@ function switchTab(name) {
   document.getElementById('tab-' + name).classList.add('active');
 }
 
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
-}
-function closeModalDirect() {
-  document.getElementById('modal-overlay').classList.remove('open');
-}
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
-/* ══════════════════════════════════════
-   CART LOGIC
-══════════════════════════════════════ */
 function addToCartFromModal() {
   const p = allProducts[currentModalIdx];
   if (!p) return;
   const id = selected + '-' + currentModalIdx;
   addToCart(id, p, modalQty);
-
-  // Update button
   const btn = document.getElementById('modal-add-btn');
   btn.classList.add('success');
   btn.innerHTML = '<span>✓</span> Adicionado ao carrinho!';
@@ -1327,13 +1040,8 @@ function addToCartFromModal() {
     btn.innerHTML = '<span>🛒</span> Adicionar ao carrinho';
     btn.classList.remove('success');
   }, 2000);
-
-  // Update card button if visible
   const cardBtn = document.querySelector(`[data-idx="${currentModalIdx}"]`);
-  if (cardBtn) {
-    cardBtn.classList.add('added');
-    cardBtn.textContent = '✓ Adicionado';
-  }
+  if (cardBtn) { cardBtn.classList.add('added'); cardBtn.textContent = '✓ Adicionado'; }
 }
 
 function quickAdd(idx, btn) {
@@ -1347,83 +1055,46 @@ function quickAdd(idx, btn) {
 
 function addToCart(id, p, qty) {
   const existing = cart.find(c => c.id === id);
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({ id, name: p.name, icon: p.icon, color: p.color, price: p.price, priceNum: p.priceNum, url: p.url, qty });
-  }
+  if (existing) { existing.qty += qty; } else { cart.push({ id, name: p.name, icon: p.icon, color: p.color, price: p.price, priceNum: p.priceNum, url: p.url, qty }); }
   updateCartUI();
   showToast(`${p.icon} ${p.name.split('—')[0].trim()} adicionado!`);
 }
 
-function removeFromCart(id) {
-  cart = cart.filter(c => c.id !== id);
-  updateCartUI();
-  renderCartItems();
-}
+function removeFromCart(id) { cart = cart.filter(c => c.id !== id); updateCartUI(); renderCartItems(); }
 
 function changeCartQty(id, delta) {
   const item = cart.find(c => c.id === id);
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
-  updateCartUI();
-  renderCartItems();
+  updateCartUI(); renderCartItems();
 }
 
 function clearCart() {
   if (!confirm('Limpar todos os itens do carrinho?')) return;
-  cart = [];
-  updateCartUI();
-  renderCartItems();
-  // Reset card buttons
-  document.querySelectorAll('.card-add-btn.added').forEach(b => {
-    b.classList.remove('added');
-    b.textContent = '+ Carrinho';
-  });
+  cart = []; updateCartUI(); renderCartItems();
+  document.querySelectorAll('.card-add-btn.added').forEach(b => { b.classList.remove('added'); b.textContent = '+ Carrinho'; });
 }
 
 function updateCartUI() {
   const count = cart.reduce((s, c) => s + c.qty, 0);
   const badge = document.getElementById('cart-badge');
-  const label = document.getElementById('cart-label');
-  const bar = document.getElementById('sticky-cart-bar');
-  const app = document.getElementById('corin-app');
-  const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
-  const subtotal = cart.reduce((s, c) => s + (c.priceNum ? c.priceNum * c.qty : 0), 0);
-  const hasVariable = cart.some(c => c.priceNum === null);
-
   if (count > 0) {
     badge.textContent = count;
     badge.classList.add('visible');
     badge.classList.remove('bump');
     void badge.offsetWidth;
     badge.classList.add('bump');
-    label.textContent = 'Carrinho';
-    // sticky bar
-    document.getElementById('sticky-count').textContent = count;
-    document.getElementById('sticky-total').textContent = fmt(subtotal) + (hasVariable ? ' +' : '');
-    bar.classList.add('visible');
-    app.classList.add('bar-visible');
-  } else {
-    badge.classList.remove('visible');
-    label.textContent = 'Carrinho';
-    bar.classList.remove('visible');
-    app.classList.remove('bar-visible');
-  }
+  } else { badge.classList.remove('visible'); }
 }
 
 function renderCartItems() {
   const list = document.getElementById('cart-items-list');
   const footer = document.getElementById('cart-footer');
-
   if (cart.length === 0) {
     list.innerHTML = `<div class="cart-empty"><span class="cart-empty-icon">🛒</span><p>Seu carrinho está vazio.<br>Explore os produtos e adicione o que gostar!</p></div>`;
-    footer.style.display = 'none';
-    return;
+    footer.style.display = 'none'; return;
   }
-
   footer.style.display = 'block';
-
   list.innerHTML = cart.map(item => `
     <div class="cart-item">
       <div class="cart-item-icon" style="background:${item.color}">${item.icon}</div>
@@ -1441,67 +1112,35 @@ function renderCartItems() {
       </div>
     </div>
   `).join('');
-
-  // Compute totals (skip items with null priceNum)
   const subtotal = cart.reduce((s, c) => s + (c.priceNum ? c.priceNum * c.qty : 0), 0);
   const hasVariable = cart.some(c => c.priceNum === null);
   const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
   document.getElementById('cart-subtotal').textContent = fmt(subtotal) + (hasVariable ? ' +' : '');
   document.getElementById('cart-total').textContent = fmt(subtotal) + (hasVariable ? ' +' : '');
-
-  // Checkout button — build URL list
-  const checkoutBtn = document.getElementById('checkout-btn');
-  checkoutBtn.disabled = false;
 }
 
-function openCart() {
-  renderCartItems();
-  document.getElementById('cart-overlay').classList.add('open');
-  document.getElementById('cart-drawer').classList.add('open');
-}
-
-function closeCart() {
-  document.getElementById('cart-overlay').classList.remove('open');
-  document.getElementById('cart-drawer').classList.remove('open');
-}
+function openCart() { renderCartItems(); document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); }
+function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); }
 
 function goToCheckout() {
   if (cart.length === 0) return;
-
   const fmt = v => 'R$ ' + v.toFixed(2).replace('.', ',');
   const subtotal = cart.reduce((s, c) => s + (c.priceNum ? c.priceNum * c.qty : 0), 0);
   const hasVariable = cart.some(c => c.priceNum === null);
-
-  let lines = [];
-  lines.push('Olá! Gostaria de fazer um pedido 😊');
-  lines.push('');
-  lines.push('🛒 *Meu carrinho:*');
-  lines.push('');
-
+  let lines = ['Olá! Gostaria de fazer um pedido 😊', '', '🛒 *Meu carrinho:*', ''];
   cart.forEach((item, i) => {
     const itemTotal = item.priceNum ? fmt(item.priceNum * item.qty) : 'sob consulta';
     lines.push(`${i + 1}. ${item.icon} *${item.name}*`);
     lines.push(`   Qtd: ${item.qty}  |  Unitário: ${item.price}  |  Total: ${itemTotal}`);
   });
-
-  lines.push('');
-  lines.push('──────────────────────');
-  if (subtotal > 0) {
-    lines.push(`💰 *Subtotal: ${fmt(subtotal)}${hasVariable ? ' +' : ''}*`);
-  }
-  lines.push('🚚 Aguardo informações sobre frete e prazo.');
-  lines.push('');
-  lines.push('Obrigado(a)!');
-
+  lines.push('', '──────────────────────');
+  if (subtotal > 0) lines.push(`💰 *Subtotal: ${fmt(subtotal)}${hasVariable ? ' +' : ''}*`);
+  lines.push('🚚 Aguardo informações sobre frete e prazo.', '', 'Obrigado(a)!');
   const msg = encodeURIComponent(lines.join('\n'));
-  const url = `https://api.whatsapp.com/send/?phone=5511947962580&text=${msg}&type=phone_number&app_absent=0`;
-  window.open(url, '_blank');
+  window.open(`https://api.whatsapp.com/send/?phone=5511947962580&text=${msg}&type=phone_number&app_absent=0`, '_blank');
   showToast('Abrindo WhatsApp 💬');
 }
 
-/* ══════════════════════════════════════
-   TOAST
-══════════════════════════════════════ */
 let toastTimer = null;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -1511,18 +1150,5 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 </script>
-
-<!-- STICKY CART BAR -->
-<div class="sticky-cart-bar" id="sticky-cart-bar">
-  <div class="sticky-cart-left">
-    <span class="sticky-cart-count" id="sticky-count">0</span>
-    <span class="sticky-cart-label">iten(s) no carrinho</span>
-  </div>
-  <span class="sticky-cart-total" id="sticky-total">R$ 0,00</span>
-  <button class="sticky-cart-btn" onclick="openCart()">
-    🛒 Ver carrinho
-  </button>
-</div>
-
 </body>
 </html>
